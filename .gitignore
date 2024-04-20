@@ -1,0 +1,7 @@
+push_swap
+*.out
+*.o
+*.a
+.vscode/
+output/
+build/
