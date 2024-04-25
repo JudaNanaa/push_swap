@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   2numbers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 02:57:30 by madamou           #+#    #+#             */
-/*   Updated: 2024/03/30 19:40:42 by madamou          ###   ########.fr       */
+/*   Created: 2024/04/23 23:56:17 by madamou           #+#    #+#             */
+/*   Updated: 2024/04/24 13:03:23 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_push_swap.h"
 
-char	*ft_strchr(const char *s, int c)
+t_stack *ft_if_2_numbers(t_stack *stack_a)
 {
-	int		i;
-	char	*ptr;
+	t_stack *tmp;
+	int buff;
 
-	ptr = (char *)s;
-	i = 0;
-	while (ptr[i])
+	tmp = stack_a;
+	buff = stack_a->nb;
+	stack_a = stack_a->next;
+	if (buff > stack_a->nb)
 	{
-		if (ptr[i] == (char)c)
-			return (&ptr[i]);
-		i++;
+		stack_a = ft_swap_a(tmp);
+		return (stack_a);
 	}
-	if (ptr[i] == (char)c)
-		return (&ptr[i]);
-	return (NULL);
+	return (tmp);
 }
-
-/*      int main(void)
-{
-	char chain[] = "oui je test";
-	char c = 'i';
-	printf("%s\n", ft_strchr(chain, c));
-	printf("%s\n", strchr(chain, c));
-}*/

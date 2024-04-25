@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   functions_stack2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 15:06:33 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/23 17:27:58 by madamou          ###   ########.fr       */
+/*   Created: 2024/04/24 07:38:17 by madamou           #+#    #+#             */
+/*   Updated: 2024/04/25 20:55:43 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_push_swap.h"
 
-char	*ft_strdup(const char *src)
+bool ft_check_if_sort(t_stack **stack)
 {
-	char				*dest;
-	long unsigned int	i;
+	int buffer;
+	t_stack *tmp;
 
-	i = -1;
-	dest = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (dest == NULL)
-		return (NULL);
-	while (src[++i])
-		dest[i] = src[i];
-	dest[i] = '\0';
-	return (dest);
+	tmp = stack[stacka];
+	if (ft_is_empty_stack(stack[stackb]) == false)
+		return (false);
+	buffer = tmp->nb;
+	while (tmp)
+	{
+		if (buffer > tmp->nb)
+			return (false);
+		buffer = tmp->nb;
+		tmp = tmp->next;
+	}
+	return (true);
 }
-
-/*int main(void)
-{
-	printf("%s\n", ft_strdup("je suis entrain de test!"));
-}*/

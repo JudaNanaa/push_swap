@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   3numbers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 00:16:58 by yourLogin         #+#    #+#             */
-/*   Updated: 2024/03/23 17:52:34 by madamou          ###   ########.fr       */
+/*   Created: 2024/04/24 07:32:57 by madamou           #+#    #+#             */
+/*   Updated: 2024/04/24 13:04:45 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_push_swap.h"
 
-int	ft_isascii(int c)
+t_stack *ft_if_3_numbers(t_stack *stack_a)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	t_stack *tmp;
+	int buff;
+
+	tmp = stack_a;
+	buff = stack_a->nb;
+	stack_a = stack_a->next;
+	if (buff > stack_a->nb)
+	{
+		stack_a = ft_swap_a(tmp);
+		return (stack_a);
+	}
+	return (tmp);
 }
-
-/*int main(void)
-{
-	printf("%d\n", ft_isascii(128));
-	printf("%d\n", isascii(128));
-}*/

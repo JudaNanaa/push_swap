@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 21:47:05 by marvin            #+#    #+#             */
-/*   Updated: 2024/04/21 00:01:01 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/23 14:33:36 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char				*ft_strnstr(const char *big, const char *little,
 						size_t len);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char				*ft_realloc(char *ptr, int len_realloc);
+char				*ft_strcat(char *dest, char *src);
 
 char				**ft_split(char const *s, char c);
 

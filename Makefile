@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 21:03:54 by madamou           #+#    #+#              #
-#    Updated: 2024/04/20 23:54:38 by madamou          ###   ########.fr        #
+#    Updated: 2024/04/25 20:56:09 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g3
 
-SRCS = ft_push_swap.c functions1.c
+SRCS = main.c check_args.c int_to_stack.c functions_stack.c 2numbers.c \
+		stack_a_and_b.c stack_mouvement.c functions_stack2.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -23,7 +24,7 @@ NAME = push_swap
 all = $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -L. -lftprintf -lft -o $(NAME) 
+	$(CC) $(OBJS) -I include -L lib -lftprintf -lft -o $(NAME) 
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@

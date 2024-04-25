@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 15:06:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/23 15:07:29 by madamou          ###   ########.fr       */
+/*   Created: 2024/04/20 21:10:37 by madamou           #+#    #+#             */
+/*   Updated: 2024/04/24 07:12:00 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_push_swap.h"
 
-static int	ft_lenstr(char const *str)
+int	main(int argc, char **argv)
 {
-	int	i;
+	t_stack	*st;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (argc == 1)
+		return (0);
+	if (ft_check_args(argv))
+	{
+		st = ft_args_to_stack(argv);
+		st = ft_all_stacks(st);
+		ft_print_stack(st);
+		return (ft_clear_stack(st), 0);
+	}
+	return (ft_printf("Error\n"), 0);
 }
-
-void	ft_putendl(char const *s)
-{
-	write(1, s, ft_lenstr(s));
-	write(1, "\n", 1);
-}
-
-/*int main(void)
-{
-	ft_putendl("bonsoir le monde.");
-}*/

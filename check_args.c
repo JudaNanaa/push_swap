@@ -1,44 +1,76 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions1.c                                       :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:16:54 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/21 00:15:28 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/23 21:59:11 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
+
+char	**ft_concatenate_all_args(char **argv)
+{
+	int		index;
+	char	*test;
+
+	index = 2;
+	test = ft_calloc(sizeof(char), (ft_strlen(argv[1]) + 1 + 1));
+	if (!test)
+		exit(EXIT_FAILURE);
+	test = ft_strcat(test, argv[1]);
+	while (argv[index])
+	{
+		test = ft_realloc(test, (ft_strlen(argv[1]) + 1));
+		if (!test)
+			exit(EXIT_FAILURE);
+		test = ft_strcat(test, " ");
+		test = ft_strcat(test, argv[index++]);
+	}
+	argv = ft_split(test, ' ');
+	return (free(test), argv);
+}
+
+int	ft_check_if_number(char **argv, int index, int i)
+{
+	if ((argv[index][i] < '0' || argv[index][i] > '9') && (argv[index][i] != '-'
+			&& argv[index][i] != '+'))
+		return (0);
+	if (argv[index][i] == '-' || argv[index][i] == '+')
+	{
+		if (argv[index][i + 1] < '0' || argv[index][i + 1] > '9')
+			return (0);
+	}
+	return (1);
+}
 
 int	ft_check_args(char **argv)
 {
 	int	index;
 	int	i;
 
-	index = 1;
+	index = 0;
+	argv = ft_concatenate_all_args(argv);
+	if (!argv)
+		exit(EXIT_FAILURE);
 	while (argv[index])
 	{
 		i = 0;
 		while (argv[index][i])
 		{
-			if ((argv[index][i] < '0' || argv[index][i] > '9')
-				&& (argv[index][i] != '-' && argv[index][i] != '+'))
-				return (0);
-			if (argv[index][i] == '-' || argv[index][i] == '+')
-			{
-				if (argv[index][i + 1] < '0' || argv[index][i + 1] > '9')
-					return (0);
-			}
+			if (!ft_check_if_number(argv, index, i))
+				return (argv = ft_free_args(argv), 0);
 			i++;
 		}
-		if (!ft_check_if_int(argv[index])
-			|| !ft_check_if_duplicate(argv, index))
-			return (0);
+		if (!ft_check_if_int(argv[index]) || !ft_check_if_duplicate(argv,
+				index))
+			return (argv = ft_free_args(argv), 0);
 		index++;
 	}
-	return (1);
+	return (argv = ft_free_args(argv), 1);
 }
 
 int	ft_check_if_int(char *str)
@@ -65,13 +97,16 @@ int	ft_check_if_int(char *str)
 
 int	ft_check_if_duplicate(char **str, int index)
 {
-	int i;
+	int	i;
 
-	i = 1;
+	i = 0;
 	while (i < index)
 	{
-		if (ft_strcmp(str[i++],str[index]) == 0)
+		if (ft_strcmp(str[i], str[index]) == 0)
 			return (0);
+		if (ft_atoi(str[i]) == ft_atoi(str[index]))
+			return (0);
+		i++;
 	}
 	return (1);
 }
