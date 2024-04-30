@@ -6,13 +6,13 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:40:57 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/25 20:40:47 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/27 20:27:13 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-bool	ft_is_empty_stack(t_stack *st)
+t_bool	ft_is_empty_stack(t_stack *st)
 {
 	if (st == NULL)
 		return (true);
@@ -56,9 +56,9 @@ void	ft_print_stack(t_stack *st)
 	}
 }
 
-int ft_len_stack(t_stack *st)
+int	ft_len_stack(t_stack *st)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (st)
