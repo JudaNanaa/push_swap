@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 21:03:54 by madamou           #+#    #+#              #
-#    Updated: 2024/04/27 20:05:21 by madamou          ###   ########.fr        #
+#    Updated: 2024/05/02 21:33:43 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME = push_swap
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -I include -L lib -lftprintf -lft -o $(NAME) 
+	$(CC) $(OBJS) -I include -L lib -lftprintf -lft -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@

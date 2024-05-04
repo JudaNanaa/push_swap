@@ -6,13 +6,13 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:15:01 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/27 23:01:04 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/02 21:28:15 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-t_stack	*ft_rev_rotate_a(t_stack *stack_a)
+t_stack	*ft_rev_rotate_a(t_stack *stack_a, int cas)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -29,8 +29,8 @@ t_stack	*ft_rev_rotate_a(t_stack *stack_a)
 	last = stack_a;
 	last->next = first;
 	before_last->next = NULL;
-	ft_printf("rra\n");
-	ft_print_mouvements(1);
+	if (cas == 1)
+		ft_printf("rra\n");
 	return (last);
 }
 
@@ -52,7 +52,6 @@ t_stack	*ft_rev_rotate_b(t_stack *stack_b)
 	last->next = first;
 	before_last->next = NULL;
 	ft_printf("rrb\n");
-	ft_print_mouvements(1);
 	return (last);
 }
 
@@ -71,7 +70,6 @@ t_stack	*ft_push_a(t_stack *stack_a, t_stack *stack_b, int cas)
 		stat = stack_b;
 		stack_b = stat;
 		ft_printf("pa\n");
-		ft_print_mouvements(1);
 		return (stack_a);
 	}
 	return (stat);
@@ -91,10 +89,8 @@ t_stack	*ft_push_b(t_stack *stack_a, t_stack *stack_b, int cas)
 		stack_a = ft_del_up_stack(stack_a);
 		stack_b = ft_push_stack(stack_b, buff);
 		tmp = stack_b;
-		tmp->next = stat;
 		stat = tmp;
 		ft_printf("pb\n");
-		ft_print_mouvements(1);
 		return (stack_a);
 	}
 	return (stat);

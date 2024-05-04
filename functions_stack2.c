@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 07:38:17 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/30 11:16:18 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/02 21:26:08 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,6 @@ t_bool	ft_check_if_sort(t_stack *stack_a, t_stack *stack_b)
 	while (stack_a)
 	{
 		if (buffer > stack_a->nb)
-			return (false);
-		buffer = stack_a->nb;
-		stack_a = stack_a->next;
-	}
-	return (true);
-}
-
-t_bool	ft_check_if_sort_inverse(t_stack *stack_a, t_stack *stack_b)
-{
-	int	buffer;
-
-	if (ft_is_empty_stack(stack_b) == false)
-		return (false);
-	buffer = stack_a->nb;
-	while (stack_a)
-	{
-		if (buffer < stack_a->nb)
 			return (false);
 		buffer = stack_a->nb;
 		stack_a = stack_a->next;
@@ -69,29 +52,6 @@ int	ft_find_biggest_nb(t_stack *stack_a, int pivot)
 	return (index);
 }
 
-int	ft_find_biggest_nb_inverse(t_stack *stack_a, int pivot)
-{
-	int buff;
-	int index;
-	t_stack *tmp;
-
-	tmp = stack_a;
-	index = 1;
-	buff = stack_a->nb;
-	while (stack_a)
-	{
-		if (stack_a->nb <= pivot)
-			buff = stack_a->nb;
-		stack_a = stack_a->next;
-	}
-	while (tmp->nb != buff)
-	{
-		index++;
-		tmp = tmp->next;
-	}
-	return (index);
-}
-
 t_stack *ft_del_up_stack(t_stack *stack)
 {
 	t_stack *buff;
@@ -102,18 +62,6 @@ t_stack *ft_del_up_stack(t_stack *stack)
 	buff = buff->next;
 	free(stack);
 	return (buff);
-}
-
-void				ft_print_mouvements(int cas)
-{
-	static int nb;
-
-	if (cas == 0)
-		nb = 0;
-	if (cas == 1)
-		nb++;
-	if (cas == 2)
-		ft_printf("le nombre de mouvements est de: %d\n", nb);
 }
 
 int ft_find_pivot(t_stack *stack)
@@ -164,33 +112,97 @@ int *ft_sort_tab(int *tab, int len_tab)
 	return (tab);
 }
 
-int ft_normal_or_rev(t_stack *stack, int len_stack, int pivot)
+int ft_min(t_stack *stack_a)
 {
-	int index1;
-	int index2;
-	int tmp;
+	int buff;
 
-	index1 = 1;
-	while (stack && (stack->nb > pivot))
+	buff = stack_a->nb;
+	while (stack_a)
 	{
-		stack = stack->next;
-		index1++;
+		if (buff > stack_a->nb)
+			buff = stack_a->nb;
+		stack_a = stack_a->next;
 	}
-	index2 = index1;
-	tmp = index1;
-	while (stack)
+	return (buff);
+}
+
+int ft_max(t_stack *stack_a)
+{
+	int buff;
+
+	buff = stack_a->nb;
+	while (stack_a)
 	{
-		if (stack->nb <= pivot && (tmp >= (len_stack / 2) + 1))
-			index2 = tmp;
-		stack = stack->next;
-		tmp++;
+		if (buff < stack_a->nb)
+			buff = stack_a->nb;
+		stack_a = stack_a->next;
 	}
-	if ((len_stack / 2) + 1 < index2)
+	return (buff);
+}
+
+int ft_between(t_stack *stack_a, int nb)
+{
+	int buff;
+
+	buff = stack_a->nb;
+	while (stack_a->next)
+		stack_a = stack_a->next;
+	if (stack_a->nb < nb && nb < buff)
+		return (1);
+	return (0);
+}
+
+int ft_compter1(t_stack *stack_a, int nb, int cpt1)
+{
+	int buff;
+
+	while (ft_between(stack_a, nb) == 0)
 	{
-		index2 += 2 + (len_stack - index2);
-		index2 -= len_stack;
-		if (index2 < index1)
-			return (0);
+		stack_a = ft_rotate_a(stack_a, 2);
+		cpt1++;
 	}
-	return (1);
+	buff = cpt1;
+	while (buff-- > 0)
+		stack_a = ft_rev_rotate_a(stack_a, 2);
+	return (cpt1);
+}
+
+int ft_compter2(t_stack *stack_a, int nb, int cpt2)
+{
+	int buff;
+
+	while (ft_between(stack_a, nb) == 0)
+	{
+		stack_a = ft_rev_rotate_a(stack_a, 2);
+		cpt2++;
+	}
+	buff = cpt2;
+	while (buff-- > 0)
+		stack_a = ft_rotate_a(stack_a, 2);
+	return (cpt2);
+}
+
+t_stack *ft_pa_ra_or_rra(t_stack *stack_a, t_stack *stack_b, int cas)
+{
+	int nb;
+	static t_stack *stat;
+
+	nb = stack_b->nb;
+	if (cas == 2)
+		return (stat);
+	if (ft_compter1(stack_a, nb, 0) < ft_compter2(stack_a, nb, 0))
+	{
+		nb = ft_compter1(stack_a, nb, 0);
+		while (nb-- > 0)
+			stack_a = ft_rotate_a(stack_a, 1);
+	}
+	else
+	{
+		nb = ft_compter2(stack_a, nb, 0);
+		while (nb-- > 0)
+			stack_a = ft_rev_rotate_a(stack_a, 1);
+	}
+	stack_a = ft_push_a(stack_a, stack_b, 1);
+	stat = ft_push_a(stack_a, stack_b, 2);
+	return (stack_a);
 }

@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:40:57 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/27 20:27:13 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/02 21:25:25 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,6 @@ t_stack	*ft_clear_stack(t_stack *st)
 	buff = st->next;
 	free(st);
 	return (ft_clear_stack(buff));
-}
-
-void	ft_print_stack(t_stack *st)
-{
-	if (ft_is_empty_stack(st))
-	{
-		ft_printf("rien a afficher la pile est vide");
-		return ;
-	}
-	while (st)
-	{
-		ft_printf("%d\n", st->nb);
-		st = st->next;
-	}
 }
 
 int	ft_len_stack(t_stack *st)
