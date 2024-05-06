@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:16:54 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/05 00:14:34 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/06 20:46:46 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_check_if_number(char **argv, int index, int i)
 	return (1);
 }
 
-int	ft_check_args(char **argv)
+char	**ft_check_args(char **argv)
 {
 	int	index;
 	int	i;
@@ -62,15 +62,15 @@ int	ft_check_args(char **argv)
 		while (argv[index][i])
 		{
 			if (!ft_check_if_number(argv, index, i))
-				return (argv = ft_free_args(argv), 0);
+				return (argv = ft_free_args(argv), NULL);
 			i++;
 		}
 		if (!ft_check_if_int(argv[index]) || !ft_check_if_duplicate(argv,
 				index))
-			return (argv = ft_free_args(argv), 0);
+			return (NULL);
 		index++;
 	}
-	return (argv = ft_free_args(argv), 1);
+	return (argv);
 }
 
 int	ft_check_if_int(char *str)

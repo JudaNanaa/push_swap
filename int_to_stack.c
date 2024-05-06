@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:39:11 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/23 22:04:56 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/06 17:38:02 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ t_stack	*ft_args_to_stack(char **argv)
 
 	st = NULL;
 	index = 0;
-	argv = ft_concatenate_all_args(argv);
-	if (!argv)
-		exit(EXIT_FAILURE);
 	while (argv[index])
 		index++;
 	while (index-- - 1 >= 0)
