@@ -24,12 +24,15 @@ t_stack	*ft_if_3_numbers(t_stack *stack_a, t_stack *stack_b)
 	{
 		if (buff > stack_a->nb && stack_a->nb < (stack_a->next)->nb
 			&& buff > (stack_a->next)->nb)
-			return (stack_a = ft_rotate_a(tmp, 1), ft_if_3_numbers(stack_a, stack_b));
+			return (stack_a = ft_rotate_a(tmp, 1), ft_if_3_numbers(stack_a,
+					stack_b));
 		if (buff < stack_a->nb && stack_a->nb > (stack_a->next)->nb
 			&& buff > (stack_a->next)->nb)
-			return (stack_a = ft_rev_rotate_a(tmp, 1), ft_if_3_numbers(stack_a, stack_b));
+			return (stack_a = ft_rev_rotate_a(tmp, 1), ft_if_3_numbers(stack_a,
+					stack_b));
 		else
-			return (stack_a = ft_swap_a(tmp), ft_if_3_numbers(stack_a, stack_b));
+			return (stack_a = ft_swap_a(tmp), ft_if_3_numbers(stack_a,
+					stack_b));
 	}
 	return (tmp);
 }

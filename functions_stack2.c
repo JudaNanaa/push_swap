@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 07:38:17 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/02 21:26:08 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:29:06 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_bool	ft_check_if_sort(t_stack *stack_a, t_stack *stack_b)
 
 int	ft_find_biggest_nb(t_stack *stack_a, int pivot)
 {
-	int buff;
-	int index;
-	t_stack *tmp;
+	int		buff;
+	int		index;
+	t_stack	*tmp;
 
 	tmp = stack_a;
 	index = 1;
@@ -52,10 +52,10 @@ int	ft_find_biggest_nb(t_stack *stack_a, int pivot)
 	return (index);
 }
 
-t_stack *ft_del_up_stack(t_stack *stack)
+t_stack	*ft_del_up_stack(t_stack *stack)
 {
-	t_stack *buff;
-	
+	t_stack	*buff;
+
 	if (!stack)
 		return (NULL);
 	buff = stack;
@@ -64,13 +64,13 @@ t_stack *ft_del_up_stack(t_stack *stack)
 	return (buff);
 }
 
-int ft_find_pivot(t_stack *stack)
+int	ft_find_pivot(t_stack *stack)
 {
-	int tab[100000];
-	int len_stack;
-	int i;
-	int *result;
-	int pivot;
+	int	tab[100000];
+	int	len_stack;
+	int	i;
+	int	*result;
+	int	pivot;
 
 	i = 0;
 	len_stack = ft_len_stack(stack);
@@ -83,15 +83,15 @@ int ft_find_pivot(t_stack *stack)
 	if (len_stack == 4)
 		pivot = result[0];
 	else
-		pivot = result[((len_stack - 1)/ 2)];
+		pivot = result[((len_stack - 1) / 2)];
 	return (pivot);
 }
 
-int *ft_sort_tab(int *tab, int len_tab)
+int	*ft_sort_tab(int *tab, int len_tab)
 {
-	int i;
-	int j;
-	int buff;
+	int	i;
+	int	j;
+	int	buff;
 
 	i = 0;
 	while (i < len_tab)
@@ -112,9 +112,9 @@ int *ft_sort_tab(int *tab, int len_tab)
 	return (tab);
 }
 
-int ft_min(t_stack *stack_a)
+int	ft_min(t_stack *stack_a)
 {
-	int buff;
+	int	buff;
 
 	buff = stack_a->nb;
 	while (stack_a)
@@ -126,9 +126,9 @@ int ft_min(t_stack *stack_a)
 	return (buff);
 }
 
-int ft_max(t_stack *stack_a)
+int	ft_max(t_stack *stack_a)
 {
-	int buff;
+	int	buff;
 
 	buff = stack_a->nb;
 	while (stack_a)
@@ -140,69 +140,138 @@ int ft_max(t_stack *stack_a)
 	return (buff);
 }
 
-int ft_between(t_stack *stack_a, int nb)
+t_stack	*ft_pa_ra_or_rra(t_stack *stack_a, t_stack *stack_b, int cas, int len_stacka)
 {
+	int				nb;
+	static t_stack	*stat;
 	int buff;
-
-	buff = stack_a->nb;
-	while (stack_a->next)
-		stack_a = stack_a->next;
-	if (stack_a->nb < nb && nb < buff)
-		return (1);
-	return (0);
-}
-
-int ft_compter1(t_stack *stack_a, int nb, int cpt1)
-{
-	int buff;
-
-	while (ft_between(stack_a, nb) == 0)
-	{
-		stack_a = ft_rotate_a(stack_a, 2);
-		cpt1++;
-	}
-	buff = cpt1;
-	while (buff-- > 0)
-		stack_a = ft_rev_rotate_a(stack_a, 2);
-	return (cpt1);
-}
-
-int ft_compter2(t_stack *stack_a, int nb, int cpt2)
-{
-	int buff;
-
-	while (ft_between(stack_a, nb) == 0)
-	{
-		stack_a = ft_rev_rotate_a(stack_a, 2);
-		cpt2++;
-	}
-	buff = cpt2;
-	while (buff-- > 0)
-		stack_a = ft_rotate_a(stack_a, 2);
-	return (cpt2);
-}
-
-t_stack *ft_pa_ra_or_rra(t_stack *stack_a, t_stack *stack_b, int cas)
-{
-	int nb;
-	static t_stack *stat;
-
-	nb = stack_b->nb;
+	int len_stackb;
+	
 	if (cas == 2)
 		return (stat);
-	if (ft_compter1(stack_a, nb, 0) < ft_compter2(stack_a, nb, 0))
+	len_stackb = ft_len_stack(stack_b);
+	nb = ft_less_movement(stack_a, stack_b, len_stackb, len_stacka);
+	if (ft_find_nb(stack_b, nb) <= (len_stackb / 2))
 	{
-		nb = ft_compter1(stack_a, nb, 0);
-		while (nb-- > 0)
+		while (stack_b->nb != nb)
+			stack_b = ft_rotate_b(stack_b, 1);
+	}
+	else
+	{
+			while (stack_b->nb != nb)
+			stack_b = ft_rev_rotate_b(stack_b, 1);
+	}
+	buff = ft_find_nb_stacka(stack_a, nb);
+	nb = len_stacka - buff;
+	if (buff <= nb)
+	{
+		while (buff-- > 0)
 			stack_a = ft_rotate_a(stack_a, 1);
 	}
 	else
 	{
-		nb = ft_compter2(stack_a, nb, 0);
 		while (nb-- > 0)
 			stack_a = ft_rev_rotate_a(stack_a, 1);
 	}
 	stack_a = ft_push_a(stack_a, stack_b, 1);
 	stat = ft_push_a(stack_a, stack_b, 2);
 	return (stack_a);
+}
+
+int ft_less(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int ft_less_movement(t_stack *stack_a, t_stack *stack_b, int len_stackb, int len_stacka)
+{
+	int tab[99999];
+	int tab_nb[99999];
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (i < len_stackb)
+	{
+		if (i <= (len_stackb / 2))
+		{	
+			tab[i] = i;
+			i++;
+		}
+		if (i > (len_stackb / 2))
+		{
+			tab[i] = len_stackb - i;
+			i++;
+		}
+	}
+	while (j < len_stackb)
+	{
+		i = ft_find_nb_stacka(stack_a, stack_b->nb);
+		tab[j] += ft_less(i, len_stacka - i);
+		tab_nb[j++] = stack_b->nb;
+		stack_b = stack_b->next;
+	}
+	j = 0;
+	i = 0;
+	while (j < len_stackb)
+	{
+		if (tab[i] > tab[j])
+			i = j;
+		j++;	
+	}
+	return (tab_nb[i]);
+}
+
+int ft_find_nb(t_stack *stack, int nb)
+{
+	int index;
+
+	index = 0;
+	while (stack->nb != nb)
+	{
+		stack = stack->next;
+		index++;
+	}
+	return (index);
+}
+
+int ft_find_nb_stacka(t_stack * stack_a, int nb)
+{
+	int index;
+
+	index = 0;
+	while (stack_a && stack_a->nb != ft_find_next(stack_a, nb))
+	{
+		stack_a = stack_a->next;
+		index++;
+	}
+	return (index);
+}
+
+int ft_find_next(t_stack *stack, int nb)
+{
+	int buff;
+	int min;
+
+	buff = nb;
+	min = stack->nb;
+	while (stack)
+	{
+		if (nb < stack->nb)
+		{
+			if (buff == nb)
+				buff = stack->nb;
+			else
+				buff = ft_less(buff, stack->nb);
+		}
+		if (min > stack->nb)
+			min = stack->nb;
+		stack = stack->next;
+	}
+	if (buff == nb)
+		return (min);
+	return (buff);
 }

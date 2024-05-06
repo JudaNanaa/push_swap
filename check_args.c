@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:16:54 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:11 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/05 00:14:34 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**ft_concatenate_all_args(char **argv)
 	test = ft_strcat(test, argv[1]);
 	while (argv[index])
 	{
-		test = ft_realloc(test, (ft_strlen(argv[1]) + 1));
+		test = ft_realloc(test, (ft_strlen(argv[index]) + 1));
 		if (!test)
 			exit(EXIT_FAILURE);
 		test = ft_strcat(test, " ");

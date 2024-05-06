@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 00:00:31 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/02 21:28:00 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/05 21:46:52 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_stack	*ft_swap_a(t_stack *stack_a)
 	stack_a = stack_a->next;
 	buff->next = stack_a->next;
 	stack_a->next = buff;
-	ft_printf("sa\n");
+	ft_stock_movements("sa\n", 1);
+	// write(1, "sa\n", 3);
 	return (stack_a);
 }
 
@@ -36,7 +37,8 @@ t_stack	*ft_swap_b(t_stack *stack_b)
 	stack_b = stack_b->next;
 	buff->next = stack_b->next;
 	stack_b->next = buff;
-	ft_printf("sb\n");
+	ft_stock_movements("sb\n", 1);
+	// write(1, "sb\n", 3);
 	return (stack_b);
 }
 
@@ -54,11 +56,12 @@ t_stack	*ft_rotate_a(t_stack *stack_a, int cas)
 	stack_a->next = buff;
 	buff->next = NULL;
 	if (cas == 1)
-		ft_printf("ra\n");
+		ft_stock_movements("ra\n", 1);
+		// write(1, "ra\n", 3);
 	return (second);
 }
 
-t_stack	*ft_rotate_b(t_stack *stack_b)
+t_stack	*ft_rotate_b(t_stack *stack_b, int cas)
 {
 	t_stack	*buff;
 	t_stack	*second;
@@ -71,6 +74,8 @@ t_stack	*ft_rotate_b(t_stack *stack_b)
 		stack_b = stack_b->next;
 	stack_b->next = buff;
 	buff->next = NULL;
-	ft_printf("rb\n");
+	if (cas == 1)
+		ft_stock_movements("rb\n", 1);
+		// write(1, "rb\n", 3);
 	return (second);
 }
