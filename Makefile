@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 21:03:54 by madamou           #+#    #+#              #
-#    Updated: 2024/05/08 23:37:02 by madamou          ###   ########.fr        #
+#    Updated: 2024/05/09 00:37:26 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,26 +19,36 @@ SRCS = $(addprefix mandatory/, main.c check_args.c int_to_stack.c functions_stac
 		stack_mouvement2.c push_swap.c find_pivot.c less_movement.c \
 		less_movement2.c) 
 
+SRCS_BONUS = $(addprefix bonus_part/, check_args_bonus.c checker_bonus.c int_to_stack_bonus.c \
+		main_bonus.c stack_mouvement_bonus.c stack_mouvement2_bonus.c functions_stack_bonus.c \
+		free_if_error.c)
 
 OBJS = $(SRCS:.c=.o)
 
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+
 NAME = push_swap
+
+NAME_BONUS = checker
 
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -I include -L lib -lft -o $(NAME)
+	$(CC) $(OBJS) -I include -L lib -lft -lftprintf -lget_next_line -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus : all
+bonus : $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJS_BONUS)
+	$(CC) $(OBJS_BONUS) -I include -L lib -lft -lftprintf -lget_next_line -o $(NAME_BONUS)
 
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_BONUS)
 
 re: fclean all
 

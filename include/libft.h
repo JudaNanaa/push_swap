@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 21:47:05 by marvin            #+#    #+#             */
-/*   Updated: 2024/05/08 23:24:52 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/09 13:39:42 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int					ft_lstsize(t_list *lst);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_printf(const char *str, ...);
 int					ft_strcmp(const char *s1, const char *s2);
-
 
 char				*ft_itoa(int n);
 char				*ft_strcpy(char *dest, char *src);

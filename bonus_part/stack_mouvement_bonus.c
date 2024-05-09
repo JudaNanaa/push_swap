@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 00:00:31 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/08 22:44:35 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/09 00:25:45 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "checker_bonus.h"
 
 t_stack	*ft_swap_a(t_stack *stack_a)
 {
@@ -22,7 +22,6 @@ t_stack	*ft_swap_a(t_stack *stack_a)
 	stack_a = stack_a->next;
 	buff->next = stack_a->next;
 	stack_a->next = buff;
-	write(1, "sa\n", 3);
 	return (stack_a);
 }
 
@@ -36,11 +35,10 @@ t_stack	*ft_swap_b(t_stack *stack_b)
 	stack_b = stack_b->next;
 	buff->next = stack_b->next;
 	stack_b->next = buff;
-	write(1, "sb\n", 3);
 	return (stack_b);
 }
 
-t_stack	*ft_rotate_a(t_stack *stack_a, int cas)
+t_stack	*ft_rotate_a(t_stack *stack_a)
 {
 	t_stack	*buff;
 	t_stack	*second;
@@ -53,12 +51,10 @@ t_stack	*ft_rotate_a(t_stack *stack_a, int cas)
 		stack_a = stack_a->next;
 	stack_a->next = buff;
 	buff->next = NULL;
-	if (cas == 1)
-		write(1, "ra\n", 3);
 	return (second);
 }
 
-t_stack	*ft_rotate_b(t_stack *stack_b, int cas)
+t_stack	*ft_rotate_b(t_stack *stack_b)
 {
 	t_stack	*buff;
 	t_stack	*second;
@@ -71,7 +67,5 @@ t_stack	*ft_rotate_b(t_stack *stack_b, int cas)
 		stack_b = stack_b->next;
 	stack_b->next = buff;
 	buff->next = NULL;
-	if (cas == 1)
-		write(1, "rb\n", 3);
 	return (second);
 }
