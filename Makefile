@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 21:03:54 by madamou           #+#    #+#              #
-#    Updated: 2024/05/09 00:37:26 by madamou          ###   ########.fr        #
+#    Updated: 2024/05/11 01:13:19 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS = $(addprefix mandatory/, main.c check_args.c int_to_stack.c functions_stac
 
 SRCS_BONUS = $(addprefix bonus_part/, check_args_bonus.c checker_bonus.c int_to_stack_bonus.c \
 		main_bonus.c stack_mouvement_bonus.c stack_mouvement2_bonus.c functions_stack_bonus.c \
-		free_if_error.c)
+		free_if_error_bonus.c)
 
 OBJS = $(SRCS:.c=.o)
 
