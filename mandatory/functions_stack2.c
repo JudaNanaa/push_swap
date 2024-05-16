@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 07:38:17 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/06 22:40:01 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:35:38 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "../include/ft_push_swap.h"
 
 t_bool	ft_check_if_sort(t_stack *stack_a, t_stack *stack_b)
 {

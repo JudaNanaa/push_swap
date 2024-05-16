@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:39:11 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 00:29:14 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:36:59 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "../include/checker_bonus.h"
 
 char	**ft_free_args(char **argv)
 {

@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:40:57 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 01:08:43 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:36:56 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "../include/checker_bonus.h"
 
 int	ft_is_empty_stack(t_stack *st)
 {

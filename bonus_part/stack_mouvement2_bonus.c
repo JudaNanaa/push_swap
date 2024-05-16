@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:15:01 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 00:27:09 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:37:08 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "../include/checker_bonus.h"
 
 t_stack	*ft_rev_rotate_a(t_stack *stack_a)
 {

@@ -6,12 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/06 22:57:04 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:35:44 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
-
+#include "../include/ft_push_swap.h"
 t_stacks	*ft_pa_ra_or_rra(t_stacks *imad, int len_stackb, int len_stacka)
 {
 	int	nb;

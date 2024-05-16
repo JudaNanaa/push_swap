@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:10:37 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/06 22:27:57 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:35:51 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "../include/ft_push_swap.h"
 
 int	main(int argc, char **argv)
 {

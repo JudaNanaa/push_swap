@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:33:21 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 13:30:46 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:36:51 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "../include/checker_bonus.h"
 
 t_stacks	*ft_check_swap(char *line, t_stacks *st)
 {

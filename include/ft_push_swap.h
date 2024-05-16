@@ -6,14 +6,14 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:12:28 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/08 23:35:54 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:36:09 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
 
-# include "../include/libft.h"
+# include "libft.h"
 
 typedef struct s_stack
 {

@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:40:57 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/02 21:25:25 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:35:34 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "../include/ft_push_swap.h"
 
 t_bool	ft_is_empty_stack(t_stack *st)
 {

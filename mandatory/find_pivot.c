@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:37:19 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/06 22:37:57 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:35:30 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "../include/ft_push_swap.h"
 
 int	ft_find_pivot(t_stack *stack, int len_stack)
 {
