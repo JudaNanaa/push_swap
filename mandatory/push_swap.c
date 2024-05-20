@@ -47,7 +47,10 @@ t_stack	*ft_push_swap(t_stack *stack_a)
 
 	imad = malloc(sizeof(t_stacks));
 	if (!imad)
+	{
+		ft_clear_stack(stack_a);
 		return (NULL);
+	}
 	imad->stack_a = stack_a;
 	imad->stack_b = NULL;
 	len_stack = ft_len_stack(imad->stack_a);

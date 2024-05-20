@@ -25,7 +25,10 @@ t_stack	*ft_push_stack(t_stack *st, int nb)
 
 	new = malloc(sizeof(t_stack));
 	if (!new)
+	{
+		ft_clear_stack(st);
 		return (NULL);
+	}
 	new->nb = nb;
 	new->next = st;
 	return (new);

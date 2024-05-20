@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
+
 t_stacks	*ft_pa_ra_or_rra(t_stacks *imad, int len_stackb, int len_stacka)
 {
 	int	nb;

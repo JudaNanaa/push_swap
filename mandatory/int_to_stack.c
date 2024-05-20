@@ -39,7 +39,7 @@ t_stack	*ft_args_to_stack(char **argv)
 		if (!st)
 		{
 			ft_free_args(argv);
-			exit(EXIT_FAILURE);
+			return (NULL);
 		}
 	}
 	return (argv = ft_free_args(argv), st);

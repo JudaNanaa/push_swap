@@ -31,7 +31,7 @@ t_stacks	*ft_args_to_stack(char **argv)
 
 	st = malloc(sizeof(t_stacks));
 	if (!st)
-		return (argv = ft_free_args(argv), NULL);
+		return (argv = ft_free_args(argv), exit(EXIT_FAILURE), NULL);
 	st->stack_a = NULL;
 	st->stack_b = NULL;
 	index = 0;

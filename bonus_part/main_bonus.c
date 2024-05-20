@@ -12,6 +12,16 @@
 
 #include "../include/checker_bonus.h"
 
+t_stacks	*ft_line_by_line(char *line, t_stacks *st)
+{
+	while (line)
+	{
+		st = ft_execute_prompt(line, st);
+		line = get_next_line(-1);
+	}
+	return (st);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stacks	*st;
@@ -22,20 +32,18 @@ int	main(int argc, char **argv)
 	argv = ft_check_args(argv);
 	if (argv)
 	{
+		if (!argv[0])
+			return (0);
 		st = ft_args_to_stack(argv);
 		line = get_next_line(0);
-		while (line)
-		{
-			st = ft_execute_prompt(line, st);
-			line = get_next_line(0);
-		}
+		ft_line_by_line(line, st);
 		if (!ft_check_if_sort(st->stack_a, st->stack_b))
 		{
-			ft_clear_stack(st->stack_b);
-			return (ft_clear_stack(st->stack_b), ft_printf("KO\n"), 0);
+			ft_clear_stack(st->stack_a);
+			return (ft_clear_stack(st->stack_b), write(1, "KO\n", 3), 0);
 		}
 		else
-			return (ft_printf("OK\n"), ft_clear_stack(st->stack_a), 0);
+			return (write(1, "OK\n", 3), ft_clear_stack(st->stack_a), 0);
 	}
 	return (ft_printf("Error\n"), 1);
 }
