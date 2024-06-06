@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	if (args)
 	{
 		if (!args[0])
-			return (0);
+			return (ft_free_args(args), write(2, "Error\n", 6), 0);
 		stacks = ft_args_to_stack(args);
 		ft_line_by_line(stacks);
 		if (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
