@@ -14,12 +14,18 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g3
 
-SRCS = $(addprefix mandatory/, main.c check_args.c int_to_stack.c functions_stack.c 2numbers.c \
+SRCS_DIR = mandatory/
+
+SRCS_BONUS_DIR = bonus_part/
+
+OBJS_DIR = objets/
+
+SRCS = $(addprefix $(SRCS_DIR), main.c check_args.c int_to_stack.c functions_stack.c 2numbers.c \
 		stack_mouvement.c functions_stack2.c 3numbers.c \
 		stack_mouvement2.c push_swap.c find_pivot.c less_movement.c \
-		less_movement2.c stack_a_to_stack_b.c )
+		less_movement2.c stack_a_to_stack_b.c)
 
-SRCS_BONUS = $(addprefix bonus_part/, check_args_bonus.c checker_bonus.c int_to_stack_bonus.c \
+SRCS_BONUS = $(addprefix $(SRCS_BONUS_DIR), check_args_bonus.c checker_bonus.c int_to_stack_bonus.c \
 		main_bonus.c stack_mouvement_bonus.c stack_mouvement2_bonus.c functions_stack_bonus.c \
 		free_if_error_bonus.c)
 
@@ -31,10 +37,15 @@ NAME = push_swap
 
 NAME_BONUS = checker
 
+LIBFT = libft.a
+
 all : $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I include -L lib -lft -lftprintf -lget_next_line -o $(NAME)
+$(LIBFT):
+	make -C ./libft
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -I include -L ./libft -lft -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -42,13 +53,15 @@ $(NAME): $(OBJS)
 bonus : $(NAME) $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJS_BONUS)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) -I include -L lib -lft -lftprintf -lget_next_line -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) -I include -L ./libft -lft  -o $(NAME_BONUS)
 
 clean:
 	rm -rf $(OBJS) $(OBJS_BONUS)
+	make clean -C ./libft
 
 fclean: clean
 	rm -f $(NAME) $(NAME_BONUS)
+	make fclean -C ./libft
 
 re: fclean all
 
