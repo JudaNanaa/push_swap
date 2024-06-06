@@ -7,3 +7,4 @@ build/
 push_swap_visualizer/
 Push-Swap-Tester/
 .gitignore
+checker
