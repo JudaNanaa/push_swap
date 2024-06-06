@@ -70,6 +70,10 @@ t_stacks	*ft_execute_prompt(char *line, t_stacks *st)
 	else if (ft_strcmp(line, "pb\n") == 0)
 		st = ft_push_b(st);
 	else
+	{
+		write(1, "Error\n", 6);
+		free(line);
 		ft_free_error(st);
+	}
 	return (st);
 }

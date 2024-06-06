@@ -16,6 +16,6 @@ void	ft_free_error(t_stacks *st)
 {
 	ft_clear_stack(st->stack_a);
 	ft_clear_stack(st->stack_b);
-	ft_printf("Error\n");
+	free(st);
 	exit(EXIT_SUCCESS);
 }

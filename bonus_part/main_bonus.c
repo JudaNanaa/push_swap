@@ -13,8 +13,11 @@
 #include "../include/checker_bonus.h"
 #include <unistd.h>
 
-t_stacks	*ft_line_by_line(char *line, t_stacks *st)
+t_stacks	*ft_line_by_line(t_stacks *st)
 {
+	char	*line;
+
+	line = get_next_line(STDIN_FILENO);
 	while (line)
 	{
 		st = ft_execute_prompt(line, st);
@@ -26,7 +29,6 @@ t_stacks	*ft_line_by_line(char *line, t_stacks *st)
 int	main(int argc, char **argv)
 {
 	t_stacks	*stacks;
-	char		*line;
 	char		**args;
 
 	if (argc == 1)
@@ -37,15 +39,17 @@ int	main(int argc, char **argv)
 		if (!args[0])
 			return (0);
 		stacks = ft_args_to_stack(args);
-		line = get_next_line(0);
-		ft_line_by_line(line, stacks);
+		ft_line_by_line(stacks);
 		if (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
 		{
-			ft_clear_stack(stacks->stack_a);
-			return (ft_clear_stack(stacks->stack_b), write(1, "KO\n", 3), 0);
+			(ft_clear_stack(stacks->stack_a), ft_clear_stack(stacks->stack_b));
+			return (free(stacks), write(1, "KO\n", 3), 0);
 		}
 		else
-			return (write(1, "OK\n", 3), ft_clear_stack(stacks->stack_a), 0);
+		{
+			ft_clear_stack(stacks->stack_a);
+			return (write(1, "OK\n", 3), free(stacks), 0);
+		}
 	}
-	return (ft_printf("Error\n"), 1);
+	return (write(1, "Error\n", 6), 1);
 }

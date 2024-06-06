@@ -43,6 +43,8 @@ t_stacks	*ft_args_to_stack(char **argv)
 		if (!st->stack_a)
 		{
 			ft_free_args(argv);
+			free(st);
+			write(1, "Error\n", 6);
 			exit(EXIT_FAILURE);
 		}
 	}
