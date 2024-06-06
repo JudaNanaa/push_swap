@@ -12,11 +12,11 @@
 
 #include "../include/ft_push_swap.h"
 
-t_bool	ft_is_empty_stack(t_stack *st)
+int	ft_is_empty_stack(t_stack *st)
 {
 	if (st == NULL)
-		return (true);
-	return (false);
+		return (1);
+	return (0);
 }
 
 t_stack	*ft_push_stack(t_stack *st, int nb)

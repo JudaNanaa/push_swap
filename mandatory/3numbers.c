@@ -20,7 +20,7 @@ t_stack	*ft_if_3_numbers(t_stack *stack_a, t_stack *stack_b)
 	tmp = stack_a;
 	buff = stack_a->nb;
 	stack_a = stack_a->next;
-	if (ft_check_if_sort(tmp, stack_b) == false)
+	if (ft_check_if_sort(tmp, stack_b) == 0)
 	{
 		if (buff > stack_a->nb && stack_a->nb < (stack_a->next)->nb
 			&& buff > (stack_a->next)->nb)

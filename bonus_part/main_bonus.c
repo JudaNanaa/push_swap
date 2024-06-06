@@ -11,39 +11,41 @@
 /* ************************************************************************** */
 
 #include "../include/checker_bonus.h"
+#include <unistd.h>
 
 t_stacks	*ft_line_by_line(char *line, t_stacks *st)
 {
 	while (line)
 	{
 		st = ft_execute_prompt(line, st);
-		line = get_next_line(-1);
+		line = get_next_line(STDIN_FILENO);
 	}
 	return (st);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stacks	*st;
+	t_stacks	*stacks;
 	char		*line;
+	char		**args;
 
 	if (argc == 1)
 		return (0);
-	argv = ft_check_args(argv);
-	if (argv)
+	args = ft_check_args(argv);
+	if (args)
 	{
-		if (!argv[0])
+		if (!args[0])
 			return (0);
-		st = ft_args_to_stack(argv);
+		stacks = ft_args_to_stack(args);
 		line = get_next_line(0);
-		ft_line_by_line(line, st);
-		if (!ft_check_if_sort(st->stack_a, st->stack_b))
+		ft_line_by_line(line, stacks);
+		if (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
 		{
-			ft_clear_stack(st->stack_a);
-			return (ft_clear_stack(st->stack_b), write(1, "KO\n", 3), 0);
+			ft_clear_stack(stacks->stack_a);
+			return (ft_clear_stack(stacks->stack_b), write(1, "KO\n", 3), 0);
 		}
 		else
-			return (write(1, "OK\n", 3), ft_clear_stack(st->stack_a), 0);
+			return (write(1, "OK\n", 3), ft_clear_stack(stacks->stack_a), 0);
 	}
 	return (ft_printf("Error\n"), 1);
 }

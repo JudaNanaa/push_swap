@@ -27,12 +27,6 @@ typedef struct s_stacks
 	struct s_stack	*stack_b;
 }					t_stacks;
 
-typedef enum bool
-{
-	false,
-	true
-}					t_bool;
-
 int					ft_check_if_int(char *str);
 int					ft_check_if_duplicate(char **str, int index);
 int					ft_check_if_number(char **argv, int index, int i);
@@ -45,11 +39,11 @@ int					ft_find_nb(t_stack *stack, int nb);
 int					ft_find_nb_stacka(t_stack *stack_a, int nb);
 int					ft_find_next(t_stack *stack, int nb);
 int					ft_less(int a, int b);
-
+int					ft_find_trois_quart(t_stack *stack, int len_stack);
+int					ft_find_un_quart(t_stack *stack, int len_stack);
 int					*ft_less_movement_in_b(int *test, int len_stackb);
-
-t_bool				ft_is_empty_stack(t_stack *st);
-t_bool				ft_check_if_sort(t_stack *stack_a, t_stack *stack_b);
+int					ft_is_empty_stack(t_stack *st);
+int					ft_check_if_sort(t_stack *stack_a, t_stack *stack_b);
 
 char				**ft_concatenate_all_args(char **argv);
 char				**ft_free_args(char **argv);
@@ -59,7 +53,7 @@ t_stack				*ft_push_stack(t_stack *st, int nb);
 t_stack				*ft_clear_stack(t_stack *st);
 t_stack				*ft_args_to_stack(char **argv);
 t_stack				*ft_swap_a(t_stack *stack_a);
-t_stack				*ft_if_2_numbers(t_stack *stack_a);
+t_stack				*ft_2_numbers(t_stack *stack_a);
 t_stack				*ft_if_3_numbers(t_stack *stack_a, t_stack *stack_b);
 t_stack				*ft_push_swap(t_stack *stack_a);
 t_stack				*ft_swap_b(t_stack *stack_b);
@@ -74,5 +68,7 @@ t_stacks			*ft_push_b(t_stacks *stacks);
 t_stacks			*ft_pa_ra_or_rra(t_stacks *imad, int len_stackb,
 						int len_stacka);
 t_stacks			*ft_place_top_b(t_stacks *imad, int nb, int len_stackb);
+t_stacks			*ft_presort_stack_a_part1(t_stacks *stacks, int pivot);
+t_stacks			*ft_presort_stack_a_part2(t_stacks *stacks, int un_quart);
 
 #endif

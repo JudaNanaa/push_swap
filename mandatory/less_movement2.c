@@ -58,17 +58,17 @@ int	*ft_less_movement_in_b(int *tab, int len_stackb)
 	return (tab);
 }
 
-t_stacks	*ft_place_top_b(t_stacks *imad, int nb, int len_stackb)
+t_stacks	*ft_place_top_b(t_stacks *stacks, int nb, int len_stackb)
 {
-	if (ft_find_nb(imad->stack_b, nb) <= (len_stackb / 2))
+	if (ft_find_nb(stacks->stack_b, nb) <= (len_stackb / 2))
 	{
-		while (imad->stack_b->nb != nb)
-			imad->stack_b = ft_rotate_b(imad->stack_b, 1);
+		while (stacks->stack_b->nb != nb)
+			stacks->stack_b = ft_rotate_b(stacks->stack_b, 1);
 	}
 	else
 	{
-		while (imad->stack_b->nb != nb)
-			imad->stack_b = ft_rev_rotate_b(imad->stack_b, 1);
+		while (stacks->stack_b->nb != nb)
+			stacks->stack_b = ft_rev_rotate_b(stacks->stack_b, 1);
 	}
-	return (imad);
+	return (stacks);
 }

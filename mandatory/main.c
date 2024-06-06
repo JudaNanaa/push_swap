@@ -15,19 +15,19 @@
 int	main(int argc, char **argv)
 {
 	t_stack	*st;
-	char	**imad;
+	char	**args;
 
 	if (argc == 1)
 		return (0);
-	imad = ft_check_args(argv);
-	if (imad)
+	args = ft_check_args(argv);
+	if (args)
 	{
-		if (!imad[0])
+		if (!args[0])
 		{
-			ft_free_args(imad);
-			return (0);
+			ft_free_args(args);
+			return (write(2, "Error\n", 6), 0);
 		}
-		st = ft_args_to_stack(imad);
+		st = ft_args_to_stack(args);
 		if (!st)
 			return (write(2, "Error\n", 6), 0);
 		if (ft_check_if_sort(st, NULL))

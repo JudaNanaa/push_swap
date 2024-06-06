@@ -15,23 +15,23 @@
 char	**ft_concatenate_all_args(char **argv)
 {
 	int		index;
-	char	*test;
+	char	*strcat_args;
 
 	index = 2;
-	test = ft_calloc(sizeof(char), (ft_strlen(argv[1]) + 1 + 1));
-	if (!test)
+	strcat_args = ft_calloc(sizeof(char), (ft_strlen(argv[1]) + 1 + 1));
+	if (!strcat_args)
 		exit(EXIT_FAILURE);
-	test = ft_strcat(test, argv[1]);
+	strcat_args = ft_strcat(strcat_args, argv[1]);
 	while (argv[index])
 	{
-		test = ft_realloc(test, (ft_strlen(argv[index]) + 1));
-		if (!test)
+		strcat_args = ft_realloc(strcat_args, (ft_strlen(argv[index]) + 1));
+		if (!strcat_args)
 			exit(EXIT_FAILURE);
-		test = ft_strcat(test, " ");
-		test = ft_strcat(test, argv[index++]);
+		strcat_args = ft_strcat(strcat_args, " ");
+		strcat_args = ft_strcat(strcat_args, argv[index++]);
 	}
-	argv = ft_split(test, ' ');
-	return (free(test), argv);
+	argv = ft_split(strcat_args, ' ');
+	return (free(strcat_args), argv);
 }
 
 int	ft_check_if_number(char **argv, int index, int i)
@@ -41,7 +41,7 @@ int	ft_check_if_number(char **argv, int index, int i)
 		return (0);
 	if (argv[index][i] == '-' || argv[index][i] == '+')
 	{
-		if (argv[index][i + 1] < '0' || argv[index][i + 1] > '9')
+		if (argv[index][i + 1] < '0' || argv[index][i + 1] > '9' || i != 0)
 			return (0);
 	}
 	return (1);
@@ -82,6 +82,8 @@ int	ft_check_if_int(char *str)
 	index = 0;
 	result = 0;
 	sign = 1;
+	if (ft_strlen(str) >= 12)
+		return (0);
 	if (str[0] == '+' || str[0] == '-')
 	{
 		index++;

@@ -12,28 +12,28 @@
 
 #include "../include/ft_push_swap.h"
 
-t_stacks	*ft_pa_ra_or_rra(t_stacks *imad, int len_stackb, int len_stacka)
+t_stacks	*ft_pa_ra_or_rra(t_stacks *stacks, int len_stb, int len_sta)
 {
 	int	nb;
 	int	buff;
 
-	nb = ft_less_movement(imad->stack_a, imad->stack_b, len_stackb, len_stacka);
-	imad = ft_place_top_b(imad, nb, len_stackb);
-	buff = ft_find_nb_stacka(imad->stack_a, nb);
-	nb = len_stacka - buff;
+	nb = ft_less_movement(stacks->stack_a, stacks->stack_b, len_stb, len_sta);
+	stacks = ft_place_top_b(stacks, nb, len_stb);
+	buff = ft_find_nb_stacka(stacks->stack_a, nb);
+	nb = len_sta - buff;
 	if (buff <= nb)
 	{
 		while (buff-- > 0)
-			imad->stack_a = ft_rotate_a(imad->stack_a, 1);
+			stacks->stack_a = ft_rotate_a(stacks->stack_a, 1);
 	}
 	else
 	{
 		while (nb-- > 0)
-			imad->stack_a = ft_rev_rotate_a(imad->stack_a, 1);
+			stacks->stack_a = ft_rev_rotate_a(stacks->stack_a, 1);
 	}
-	imad->stack_a = ft_push_a(imad->stack_a, imad->stack_b, 1);
-	imad->stack_b = ft_push_a(imad->stack_a, imad->stack_b, 2);
-	return (imad);
+	stacks->stack_a = ft_push_a(stacks->stack_a, stacks->stack_b, 1);
+	stacks->stack_b = ft_push_a(stacks->stack_a, stacks->stack_b, 2);
+	return (stacks);
 }
 
 int	ft_less(int a, int b)
@@ -47,13 +47,13 @@ int	ft_less_movement(t_stack *stack_a, t_stack *stack_b, int len_stackb,
 		int len_stacka)
 {
 	int	*tab;
-	int	test[99999];
+	int	temp[99999];
 	int	tab_nb[99999];
 	int	i;
 	int	j;
 
 	j = 0;
-	tab = ft_less_movement_in_b(test, len_stackb);
+	tab = ft_less_movement_in_b(temp, len_stackb);
 	while (j < len_stackb)
 	{
 		i = ft_find_nb_stacka(stack_a, stack_b->nb);

@@ -12,7 +12,7 @@
 
 #include "../include/ft_push_swap.h"
 
-t_stack	*ft_if_2_numbers(t_stack *stack_a)
+t_stack	*ft_2_numbers(t_stack *stack_a)
 {
 	t_stack	*tmp;
 	int		buff;
