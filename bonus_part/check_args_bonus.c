@@ -30,7 +30,7 @@ char	**ft_concatenate_all_args(char **argv)
 		strcat_args = ft_strcat(strcat_args, " ");
 		strcat_args = ft_strcat(strcat_args, argv[index++]);
 	}
-	argv = ft_split(strcat_args, ' ');
+	argv = ft_split(strcat_args, " ");
 	return (free(strcat_args), argv);
 }
 
