@@ -71,7 +71,7 @@ t_stacks	*ft_execute_prompt(char *line, t_stacks *st)
 		st = ft_push_b(st);
 	else
 	{
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		free(line);
 		ft_free_error(st);
 	}

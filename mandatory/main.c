@@ -23,10 +23,7 @@ int	main(int argc, char **argv)
 	if (args)
 	{
 		if (!args[0])
-		{
-			ft_free_args(args);
-			return (write(2, "Error\n", 6), 0);
-		}
+			return (ft_free_args(args), 0);
 		st = ft_args_to_stack(args);
 		if (!st)
 			return (write(2, "Error\n", 6), 0);

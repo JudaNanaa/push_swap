@@ -12,13 +12,11 @@
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror 
 
 SRCS_DIR = mandatory/
 
 SRCS_BONUS_DIR = bonus_part/
-
-OBJS_DIR = objets/
 
 SRCS = $(addprefix $(SRCS_DIR), main.c check_args.c int_to_stack.c functions_stack.c 2numbers.c \
 		stack_mouvement.c functions_stack2.c 3numbers.c \
@@ -39,21 +37,21 @@ NAME_BONUS = checker
 
 LIBFT = libft.a
 
-all : $(NAME)
+all : $(LIBFT) $(NAME)
 
 $(LIBFT):
 	make -C ./libft
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I include -L ./libft -lft -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $^ -I include -L ./libft -lft -o $@
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus : $(NAME) $(NAME_BONUS)
+bonus : all $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJS_BONUS)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) -I include -L ./libft -lft  -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $^ -I include -L ./libft -lft  -o $@
 
 clean:
 	rm -rf $(OBJS) $(OBJS_BONUS)

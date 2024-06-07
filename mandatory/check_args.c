@@ -67,7 +67,7 @@ char	**ft_check_args(char **argv)
 		}
 		if (!ft_check_if_int(argv[index]) || !ft_check_if_duplicate(argv,
 				index))
-			return (NULL);
+			return (ft_free_args(argv), NULL);
 		index++;
 	}
 	return (argv);

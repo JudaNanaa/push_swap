@@ -21,6 +21,7 @@ t_stacks	*ft_line_by_line(t_stacks *st)
 	while (line)
 	{
 		st = ft_execute_prompt(line, st);
+		free(line);
 		line = get_next_line(STDIN_FILENO);
 	}
 	return (st);
@@ -37,7 +38,7 @@ int	main(int argc, char **argv)
 	if (args)
 	{
 		if (!args[0])
-			return (ft_free_args(args), write(2, "Error\n", 6), 0);
+			return (ft_free_args(args), 0);
 		stacks = ft_args_to_stack(args);
 		ft_line_by_line(stacks);
 		if (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
@@ -51,5 +52,5 @@ int	main(int argc, char **argv)
 			return (write(1, "OK\n", 3), free(stacks), 0);
 		}
 	}
-	return (write(1, "Error\n", 6), 1);
+	return (write(2, "Error\n", 6), 1);
 }
