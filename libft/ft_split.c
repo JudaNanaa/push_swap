@@ -6,32 +6,32 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:06:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/05/20 13:38:25 by madamou          ###   ########.fr       */
+/*   Updated: 2024/03/30 19:15:47 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_word(char const *s, char c)
+int			ft_is_in_charset(char c, char *set);
+
+static int	ft_count_word(char const *s, char *c)
 {
 	int	i;
 	int	cpt;
 
 	cpt = 0;
 	i = 0;
-	if (!s)
-		return (0);
 	while (s[i])
 	{
-		while (s[i] && s[i] == c)
+		while (ft_is_in_charset(s[i], c) && s[i])
 			i++;
-		while (s[i] && s[i] != c)
+		while (!ft_is_in_charset(s[i], c) && s[i])
 			i++;
 		cpt++;
 	}
-	if (i - 1 < 0)
+	if (i == 0)
 		return (0);
-	if (s[i - 1] == c)
+	if (ft_is_in_charset(s[i - 1], c))
 		cpt--;
 	return (cpt);
 }
@@ -56,17 +56,16 @@ static char	*ft_norminette(char const *s, int i, int j)
 
 static int	ft_free_split(char **split, int index)
 {
-	if (split[index] == NULL)
+	if (split[index - 1] == NULL)
 	{
 		while (index >= 0)
 			free(split[index--]);
-		free(split);
 		return (0);
 	}
 	return (1);
 }
 
-static int	ft_split_words(char **split, char const *s, char c)
+static int	ft_split_words(char **split, char const *s, char *c)
 {
 	int	i;
 	int	j;
@@ -74,20 +73,20 @@ static int	ft_split_words(char **split, char const *s, char c)
 
 	i = 0;
 	index = 0;
-	while (s && s[i])
+	while (s[i])
 	{
-		while (s[i] && s[i] == c)
+		while (ft_is_in_charset(s[i], c) && s[i])
 			i++;
 		j = 0;
-		while (s[i] && s[i] != c)
+		while (!ft_is_in_charset(s[i], c) && s[i])
 		{
 			i++;
 			j++;
 		}
-		if (s[i - 1] != c)
+		if (!ft_is_in_charset(s[i - 1], c))
 		{
-			split[index] = ft_norminette(s, i, j);
-			if (ft_free_split(split, index++) == 0)
+			split[index++] = ft_norminette(s, i, j);
+			if (ft_free_split(split, index) == 0)
 				return (0);
 		}
 	}
@@ -95,7 +94,7 @@ static int	ft_split_words(char **split, char const *s, char c)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char *c)
 {
 	char	**split;
 
@@ -104,11 +103,6 @@ char	**ft_split(char const *s, char c)
 	split = malloc(sizeof(char *) * (ft_count_word(s, c) + 1));
 	if (split == NULL)
 		return (NULL);
-	if (ft_count_word(s, c) == 0)
-	{
-		split[0] = NULL;
-		return (split);
-	}
 	if (ft_split_words(split, s, c) == 0)
 		return (NULL);
 	return (split);
@@ -116,9 +110,18 @@ char	**ft_split(char const *s, char c)
 
 /*int	main(void)
 {
- 	char **tab;
- 	// char * invalidReadCheck = 0;
- 	tab = ft_split("hello!", ' ');
- 	printf("%s\n", tab[0]);
- 	printf("%s\n", tab[1]);
+	char **test;
+	int i;
+
+	i = 0;
+	test = ft_split("je suis représentée comme tout!", " e");
+	if (test == NULL)
+	{
+		printf("tout est null\n");
+		return (0);
+	}
+	while (test[i])
+		printf("%s\n", test[i++]);
+	if (test[i] == NULL)
+		printf("%u", 42);
 }*/

@@ -6,12 +6,12 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/23 16:07:55 by madamou           #+#    #+#              #
-#    Updated: 2024/06/06 11:35:05 by madamou          ###   ########.fr        #
+#    Updated: 2024/06/06 19:33:32 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
        ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
@@ -23,7 +23,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
        ft_substr.c ft_tolower.c ft_toupper.c ft_strmapi.c ft_strnstr.c \
        ft_strcmp.c ft_strcat.c ft_realloc.c get_next_line_bonus.c get_next_line_utils_bonus.c \
        ft_printf.c ft_itoa_printf.c functions.c functions2.c functions3.c \
-	functions4.c printf_utils.c check_functions.c 
+	functions4.c printf_utils.c check_functions.c ft_split_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -111,8 +111,6 @@ int	main(void)
 	free(line);
 	close(fd);
 	fd = open("read_error.txt", O_RDONLY);
-	if (fd == -1 )
-		return (1);
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("[%s]\n", line);
