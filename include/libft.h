@@ -60,7 +60,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_realloc(char *ptr, int len_realloc);
 char				*ft_strcat(char *dest, char *src);
 char				*get_next_line(int fd);
-char				**ft_split(char const *s, char c);
+char				**ft_split(char const *s, char *c);
 
 void				*ft_memset(void *s, int c, size_t n);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
