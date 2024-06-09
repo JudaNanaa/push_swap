@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
+#include <cstdio>
+#include <cstdlib>
 
 int		ft_format_print(char *buffer);
 
-int	ft_stock_movement(char *move, int cas)
+int	ft_stock_movement(char *move, int cas, t_stacks stacks)
 {
 	static char	*buffer;
 
@@ -28,7 +30,11 @@ int	ft_stock_movement(char *move, int cas)
 	if (cas == 2)
 	{
 		if (ft_format_print(buffer) == -1)
-			return (free(buffer), buffer = NULL, -1);
+		{
+			free(buffer);
+			buffer = NULL;
+			(ft_clear_stack(stacks->stack_a), ft_clear_stack(stacks->stack_b));
+		}
 		free(buffer);
 		buffer = NULL;
 	}
