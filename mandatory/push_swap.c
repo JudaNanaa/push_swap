@@ -19,7 +19,7 @@ t_stacks	*ft_hundred_or_bellow(t_stacks *stacks, int pivot, int len_stacka)
 		(void)pivot;
 		stacks = ft_push_b(stacks);
 		if (stacks->stack_b->nb > pivot)
-			stacks->stack_b = ft_rotate_b(stacks->stack_b, 1);
+			stacks->stack_b = ft_rotate_b(stacks, 1);
 	}
 	return (stacks);
 }
@@ -33,15 +33,15 @@ t_stacks	*ft_all_push_in_b(t_stacks *stacks, int pivot, int len_stacka)
 	tmp = len_stacka;
 	trois_quart = ft_find_trois_quart(stacks->stack_a, len_stacka);
 	un_quart = ft_find_un_quart(stacks->stack_a, tmp);
-	while (len_stacka > (tmp / 2) && len_stacka > 5)
+	while (len_stacka > (tmp / 2) - 1 && len_stacka > 5)
 	{
 		stacks = ft_presort_stack_a_part1(stacks, pivot);
 		stacks = ft_push_b(stacks);
 		if (stacks->stack_b->nb >= trois_quart)
-			stacks->stack_b = ft_rotate_b(stacks->stack_b, 1);
+			stacks->stack_b = ft_rotate_b(stacks, 1);
 		len_stacka--;
 	}
-	while (len_stacka > (tmp / 4) && len_stacka > 5)
+	while (len_stacka > (tmp / 4) - 1 && len_stacka > 5)
 	{
 		stacks = ft_presort_stack_a_part2(stacks, un_quart);
 		stacks = ft_push_b(stacks);
@@ -57,12 +57,14 @@ t_stacks	*ft_final_sort(t_stacks *stacks, int pivot)
 	if (stacks->stack_a->nb > pivot)
 	{
 		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
-			stacks->stack_a = ft_rotate_a(stacks->stack_a, 1);
+			stacks->stack_a = ft_rotate_a(stacks, 1);
+		ft_stock_movement("", 2);
 	}
 	else
 	{
 		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
-			stacks->stack_a = ft_rev_rotate_a(stacks->stack_a, 1);
+			stacks->stack_a = ft_rev_rotate_a(stacks, 1);
+		ft_stock_movement("", 2);
 	}
 	return (stacks);
 }
@@ -82,9 +84,9 @@ t_stack	*ft_push_swap(t_stack *stack_a)
 	len_stack = ft_len_stack(stacks->stack_a);
 	pivot = ft_find_pivot(stacks->stack_a, len_stack);
 	if (len_stack == 2)
-		return (stack_a = ft_2_numbers(stacks->stack_a), free(stacks), stack_a);
+		return (stack_a = ft_2_numbers(stacks), free(stacks), stack_a);
 	stacks = ft_all_push_in_b(stacks, pivot, len_stack);
-	stacks->stack_a = ft_if_3_numbers(stacks->stack_a, NULL);
+	stacks->stack_a = ft_if_3_numbers(stacks);
 	i = 2;
 	while (++i < len_stack)
 		stacks = ft_pa_ra_or_rra(stacks, len_stack - i, i);

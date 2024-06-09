@@ -12,7 +12,7 @@
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g3 
 
 SRCS_DIR = mandatory/
 
@@ -21,7 +21,7 @@ SRCS_BONUS_DIR = bonus_part/
 SRCS = $(addprefix $(SRCS_DIR), main.c check_args.c int_to_stack.c functions_stack.c 2numbers.c \
 		stack_mouvement.c functions_stack2.c 3numbers.c \
 		stack_mouvement2.c push_swap.c find_pivot.c less_movement.c \
-		less_movement2.c stack_a_to_stack_b.c)
+		less_movement2.c stack_a_to_stack_b.c format_sortie.c)
 
 SRCS_BONUS = $(addprefix $(SRCS_BONUS_DIR), check_args_bonus.c checker_bonus.c int_to_stack_bonus.c \
 		main_bonus.c stack_mouvement_bonus.c stack_mouvement2_bonus.c functions_stack_bonus.c \

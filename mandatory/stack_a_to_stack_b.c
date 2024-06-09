@@ -15,13 +15,13 @@
 t_stacks	*ft_presort_stack_a_part1(t_stacks *stacks, int pivot)
 {
 	while (stacks->stack_a->nb < pivot)
-		stacks->stack_a = ft_rotate_a(stacks->stack_a, 1);
+		stacks->stack_a = ft_rotate_a(stacks, 1);
 	return (stacks);
 }
 
 t_stacks	*ft_presort_stack_a_part2(t_stacks *stacks, int un_quart)
 {
 	while (stacks->stack_a->nb < un_quart)
-		stacks->stack_a = ft_rotate_a(stacks->stack_a, 1);
+		stacks->stack_a = ft_rotate_a(stacks, 1);
 	return (stacks);
 }

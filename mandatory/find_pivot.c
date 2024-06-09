@@ -56,7 +56,7 @@ int	ft_find_un_quart(t_stack *stack, int len_stack)
 
 int	ft_find_trois_quart(t_stack *stack, int len_stack)
 {
-	int	tab[100000];
+	int	tab[1000000];
 	int	i;
 	int	*result;
 	int	pivot;

@@ -24,15 +24,14 @@ t_stacks	*ft_pa_ra_or_rra(t_stacks *stacks, int len_stb, int len_sta)
 	if (buff <= nb)
 	{
 		while (buff-- > 0)
-			stacks->stack_a = ft_rotate_a(stacks->stack_a, 1);
+			stacks->stack_a = ft_rotate_a(stacks, 1);
 	}
 	else
 	{
 		while (nb-- > 0)
-			stacks->stack_a = ft_rev_rotate_a(stacks->stack_a, 1);
+			stacks->stack_a = ft_rev_rotate_a(stacks, 1);
 	}
-	stacks->stack_a = ft_push_a(stacks->stack_a, stacks->stack_b, 1);
-	stacks->stack_b = ft_push_a(stacks->stack_a, stacks->stack_b, 2);
+	stacks = ft_push_a(stacks);
 	return (stacks);
 }
 

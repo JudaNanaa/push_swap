@@ -12,18 +12,12 @@
 
 #include "../include/ft_push_swap.h"
 
-t_stack	*ft_2_numbers(t_stack *stack_a)
+t_stack	*ft_2_numbers(t_stacks *stacks)
 {
-	t_stack	*tmp;
-	int		buff;
-
-	tmp = stack_a;
-	buff = stack_a->nb;
-	stack_a = stack_a->next;
-	if (buff > stack_a->nb)
+	if (stacks->stack_a->nb > stacks->stack_a->next->nb)
 	{
-		stack_a = ft_swap_a(tmp);
-		return (stack_a);
+		stacks->stack_a = ft_swap_a(stacks);
+		return (stacks->stack_a);
 	}
-	return (tmp);
+	return (stacks->stack_a);
 }

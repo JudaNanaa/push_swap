@@ -12,27 +12,23 @@
 
 #include "../include/ft_push_swap.h"
 
-t_stack	*ft_if_3_numbers(t_stack *stack_a, t_stack *stack_b)
+t_stack	*ft_if_3_numbers(t_stacks *stacks)
 {
-	t_stack	*tmp;
-	int		buff;
+	int	first;
+	int	second;
+	int	third;
 
-	tmp = stack_a;
-	buff = stack_a->nb;
-	stack_a = stack_a->next;
-	if (ft_check_if_sort(tmp, stack_b) == 0)
+	while (ft_check_if_sort(stacks->stack_a, NULL) == 0)
 	{
-		if (buff > stack_a->nb && stack_a->nb < (stack_a->next)->nb
-			&& buff > (stack_a->next)->nb)
-			return (stack_a = ft_rotate_a(tmp, 1), ft_if_3_numbers(stack_a,
-					stack_b));
-		if (buff < stack_a->nb && stack_a->nb > (stack_a->next)->nb
-			&& buff > (stack_a->next)->nb)
-			return (stack_a = ft_rev_rotate_a(tmp, 1), ft_if_3_numbers(stack_a,
-					stack_b));
+		first = stacks->stack_a->nb;
+		second = stacks->stack_a->next->nb;
+		third = stacks->stack_a->next->next->nb;
+		if (first > second && first > third && second < third)
+			stacks->stack_a = ft_rotate_a(stacks, 1);
+		else if (first < second && first > third && second > third)
+			stacks->stack_a = ft_rev_rotate_a(stacks, 1);
 		else
-			return (stack_a = ft_swap_a(tmp), ft_if_3_numbers(stack_a,
-					stack_b));
+			stacks->stack_a = ft_swap_a(stacks);
 	}
-	return (tmp);
+	return (stacks->stack_a);
 }

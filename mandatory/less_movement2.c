@@ -63,12 +63,12 @@ t_stacks	*ft_place_top_b(t_stacks *stacks, int nb, int len_stackb)
 	if (ft_find_nb(stacks->stack_b, nb) <= (len_stackb / 2))
 	{
 		while (stacks->stack_b->nb != nb)
-			stacks->stack_b = ft_rotate_b(stacks->stack_b, 1);
+			stacks->stack_b = ft_rotate_b(stacks, 1);
 	}
 	else
 	{
 		while (stacks->stack_b->nb != nb)
-			stacks->stack_b = ft_rev_rotate_b(stacks->stack_b, 1);
+			stacks->stack_b = ft_rev_rotate_b(stacks, 1);
 	}
 	return (stacks);
 }
