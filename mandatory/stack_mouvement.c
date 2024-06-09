@@ -54,7 +54,7 @@ t_stack	*ft_rotate_a(t_stacks *stacks, int cas)
 	stacks->stack_a->next = buff;
 	buff->next = NULL;
 	if (cas == 1)
-		ft_stock_movement("ra\n", 1);
+		ft_stock_movement("ra\n", 1, stacks);
 	return (second);
 }
 
@@ -72,6 +72,6 @@ t_stack	*ft_rotate_b(t_stacks *stacks, int cas)
 	stacks->stack_b->next = buff;
 	buff->next = NULL;
 	if (cas == 1)
-		ft_stock_movement("rb\n", 1);
+		ft_stock_movement("rb\n", 1, stacks);
 	return (second);
 }

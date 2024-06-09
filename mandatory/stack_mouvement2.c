@@ -30,7 +30,7 @@ t_stack	*ft_rev_rotate_a(t_stacks *stacks, int cas)
 	last->next = first;
 	before_last->next = NULL;
 	if (cas == 1)
-		ft_stock_movement("rra\n", 1);
+		ft_stock_movement("rra\n", 1, stacks);
 	return (last);
 }
 
@@ -52,7 +52,7 @@ t_stack	*ft_rev_rotate_b(t_stacks *stacks, int cas)
 	last->next = first;
 	before_last->next = NULL;
 	if (cas == 1)
-		ft_stock_movement("rrb\n", 1);
+		ft_stock_movement("rrb\n", 1, stacks);
 	return (last);
 }
 
@@ -64,7 +64,7 @@ t_stacks	*ft_push_a(t_stacks *stacks)
 	stacks->stack_b = stacks->stack_b->next;
 	tmp->next = stacks->stack_a;
 	stacks->stack_a = tmp;
-	ft_stock_movement("", 2);
+	ft_stock_movement("", 2, stacks);
 	write(1, "pa\n", 3);
 	return (stacks);
 }
@@ -77,7 +77,7 @@ t_stacks	*ft_push_b(t_stacks *stacks)
 	stacks->stack_a = stacks->stack_a->next;
 	tmp->next = stacks->stack_b;
 	stacks->stack_b = tmp;
-	ft_stock_movement("", 2);
+	ft_stock_movement("", 2, stacks);
 	write(1, "pb\n", 3);
 	return (stacks);
 }

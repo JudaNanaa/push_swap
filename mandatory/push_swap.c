@@ -58,13 +58,13 @@ t_stacks	*ft_final_sort(t_stacks *stacks, int pivot)
 	{
 		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
 			stacks->stack_a = ft_rotate_a(stacks, 1);
-		ft_stock_movement("", 2);
+		ft_stock_movement("", 2, stacks);
 	}
 	else
 	{
 		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
 			stacks->stack_a = ft_rev_rotate_a(stacks, 1);
-		ft_stock_movement("", 2);
+		ft_stock_movement("", 2, stacks);
 	}
 	return (stacks);
 }

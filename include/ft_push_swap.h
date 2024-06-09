@@ -44,6 +44,8 @@ int					ft_find_un_quart(t_stack *stack, int len_stack);
 int					*ft_less_movement_in_b(int *test, int len_stackb);
 int					ft_is_empty_stack(t_stack *st);
 int					ft_check_if_sort(t_stack *stack_a, t_stack *stack_b);
+int					ft_stock_movement(char *move, int cas, t_stacks *stacks);
+int					ft_format_print(char *buffer);
 
 char				**ft_concatenate_all_args(char **argv);
 char				**ft_free_args(char **argv);
@@ -70,7 +72,5 @@ t_stacks			*ft_pa_ra_or_rra(t_stacks *stacks, int len_stackb,
 t_stacks			*ft_place_top_b(t_stacks *imad, int nb, int len_stackb);
 t_stacks			*ft_presort_stack_a_part1(t_stacks *stacks, int pivot);
 t_stacks			*ft_presort_stack_a_part2(t_stacks *stacks, int un_quart);
-
-int					ft_stock_movement(char *move, int cas);
 
 #endif

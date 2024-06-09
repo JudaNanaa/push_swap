@@ -11,12 +11,8 @@
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
-#include <cstdio>
-#include <cstdlib>
 
-int		ft_format_print(char *buffer);
-
-int	ft_stock_movement(char *move, int cas, t_stacks stacks)
+int	ft_stock_movement(char *move, int cas, t_stacks *stacks)
 {
 	static char	*buffer;
 
@@ -34,6 +30,8 @@ int	ft_stock_movement(char *move, int cas, t_stacks stacks)
 			free(buffer);
 			buffer = NULL;
 			(ft_clear_stack(stacks->stack_a), ft_clear_stack(stacks->stack_b));
+			free(stacks);
+			exit(EXIT_FAILURE);
 		}
 		free(buffer);
 		buffer = NULL;
@@ -58,11 +56,10 @@ void	ft_print_movements_rr(char **split, char *comp, char *srch, int i)
 			}
 			j++;
 		}
-		if (!split[j])
+		if (!split[j] && split[i][0])
 		{
 			write(STDOUT_FILENO, split[i], ft_strlen(split[i]));
-			if (split[i][0])
-				write(STDOUT_FILENO, "\n", 1);
+			write(STDOUT_FILENO, "\n", 1);
 		}
 	}
 }
@@ -84,11 +81,10 @@ void	ft_print_movements_rrr(char **split, char *comp, char *srch, int i)
 			}
 			j++;
 		}
-		if (!split[j])
+		if (!split[j] && split[i][0])
 		{
 			write(STDOUT_FILENO, split[i], ft_strlen(split[i]));
-			if (split[i][0])
-				write(STDOUT_FILENO, "\n", 1);
+			write(STDOUT_FILENO, "\n", 1);
 		}
 	}
 }
