@@ -6,13 +6,13 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:15:01 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 18:37:08 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/10 06:02:08 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker_bonus.h"
 
-t_stack	*ft_rev_rotate_a(t_stack *stack_a)
+t_stack	*ft_rev_rotate_a_bonus(t_stack *stack_a)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -32,7 +32,7 @@ t_stack	*ft_rev_rotate_a(t_stack *stack_a)
 	return (last);
 }
 
-t_stack	*ft_rev_rotate_b(t_stack *stack_b)
+t_stack	*ft_rev_rotate_b_bonus(t_stack *stack_b)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -52,10 +52,12 @@ t_stack	*ft_rev_rotate_b(t_stack *stack_b)
 	return (last);
 }
 
-t_stacks	*ft_push_a(t_stacks *st)
+t_stacks	*ft_push_a_bonus(t_stacks *st)
 {
 	t_stack	*tmp;
 
+	if (!st->stack_b)
+		return (st);
 	tmp = st->stack_b;
 	st->stack_b = st->stack_b->next;
 	tmp->next = st->stack_a;
@@ -63,10 +65,12 @@ t_stacks	*ft_push_a(t_stacks *st)
 	return (st);
 }
 
-t_stacks	*ft_push_b(t_stacks *stacks)
+t_stacks	*ft_push_b_bonus(t_stacks *stacks)
 {
 	t_stack	*tmp;
 
+	if (!stacks->stack_a)
+		return (stacks);
 	tmp = stacks->stack_a;
 	stacks->stack_a = stacks->stack_a->next;
 	tmp->next = stacks->stack_b;

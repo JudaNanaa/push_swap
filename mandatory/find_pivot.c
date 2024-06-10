@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:37:19 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 18:35:30 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/10 00:26:20 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_find_pivot(t_stack *stack, int len_stack)
 {
-	int	tab[100000];
+	int	tab[10000];
 	int	i;
 	int	*result;
 	int	pivot;
@@ -35,7 +35,7 @@ int	ft_find_pivot(t_stack *stack, int len_stack)
 
 int	ft_find_un_quart(t_stack *stack, int len_stack)
 {
-	int	tab[100000];
+	int	tab[10000];
 	int	i;
 	int	*result;
 	int	pivot;
@@ -56,7 +56,7 @@ int	ft_find_un_quart(t_stack *stack, int len_stack)
 
 int	ft_find_trois_quart(t_stack *stack, int len_stack)
 {
-	int	tab[1000000];
+	int	tab[10000];
 	int	i;
 	int	*result;
 	int	pivot;

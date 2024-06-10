@@ -12,24 +12,34 @@
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3 
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS_DIR = mandatory/
 
 SRCS_BONUS_DIR = bonus_part/
 
-SRCS = $(addprefix $(SRCS_DIR), main.c check_args.c int_to_stack.c functions_stack.c 2numbers.c \
+OBJS_DIR = .objets/
+
+SRCS = main.c check_args.c int_to_stack.c functions_stack.c 2numbers.c \
 		stack_mouvement.c functions_stack2.c 3numbers.c \
 		stack_mouvement2.c push_swap.c find_pivot.c less_movement.c \
-		less_movement2.c stack_a_to_stack_b.c format_sortie.c)
+		less_movement2.c stack_a_to_stack_b.c format_sortie.c
 
-SRCS_BONUS = $(addprefix $(SRCS_BONUS_DIR), check_args_bonus.c checker_bonus.c int_to_stack_bonus.c \
+SRCS_BONUS = check_args_bonus.c checker_bonus.c int_to_stack_bonus.c \
 		main_bonus.c stack_mouvement_bonus.c stack_mouvement2_bonus.c functions_stack_bonus.c \
-		free_if_error_bonus.c)
+		free_if_error_bonus.c
 
-OBJS = $(SRCS:.c=.o)
+SRCS := $(SRCS:%=$(SRCS_DIR)/%)
 
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+
+SRCS_BONUS := $(SRCS_BONUS:%=$(SRCS_BONUS_DIR)/%)
+
+OBJS_BONUS = $(SRCS_BONUS:$(SRCS_BONUS_DIR)/%.c=$(OBJS_DIR)/%.o)
+
+MAKEFLAGS   += --no-print-directory
+
+DIR_DUP     = mkdir -p $(@D)
 
 NAME = push_swap
 
@@ -45,7 +55,8 @@ $(LIBFT):
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -I include -L ./libft -lft -o $@
 
-%.o : %.c
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	@$(DIR_DUP)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 bonus : all $(NAME_BONUS)
@@ -53,8 +64,12 @@ bonus : all $(NAME_BONUS)
 $(NAME_BONUS): $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $^ -I include -L ./libft -lft  -o $@
 
+$(OBJS_DIR)/%.o: $(SRCS_BONUS_DIR)/%.c
+	@$(DIR_DUP)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm -rf $(OBJS) $(OBJS_BONUS)
+	rm -rf $(OBJS_DIR)
 	make clean -C ./libft
 
 fclean: clean

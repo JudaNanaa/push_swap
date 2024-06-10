@@ -62,7 +62,7 @@ char	*get_next_line(int fd)
 	char		*sortie;
 
 	if (fd < 0)
-		return (stach[fd][0] = '\0', NULL);
+		return (NULL);
 	sortie = malloc(sizeof(char) * (ft_strlen_gnl(stach[fd], 1) + 1));
 	if (!sortie)
 		return (stach[fd][0] = '\0', NULL);
@@ -85,8 +85,7 @@ char	*get_next_line(int fd)
 	return (sortie);
 }
 
-/*
-#include <fcntl.h>
+/*#include <fcntl.h>
 
 int	main(void)
 {
@@ -94,30 +93,16 @@ int	main(void)
 	char	*line;
 
 	// Ouvrir le fichier en lecture
-	fd = open("read_error.txt", O_RDONLY);
+	fd = open("test", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error opening file");
 		return (1);
 	}
-	line = get_next_line(fd);
-	printf("%s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	free(line);
-	line = get_next_line(10);
-	printf("%s", line);
-	free(line);
-	close(fd);
-	fd = open("read_error.txt", O_RDONLY);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("[%s]\n", line);
+		printf("%s", line);
 		free(line);
 	}
-	line = get_next_line(10);
-	printf("%s", line);
-	free(line);
 	return (0);
 }*/

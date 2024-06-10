@@ -55,7 +55,7 @@ char	**ft_check_args(char **argv)
 	index = 0;
 	argv = ft_concatenate_all_args(argv);
 	if (!argv)
-		exit(EXIT_FAILURE);
+		return (NULL);
 	while (argv[index])
 	{
 		i = 0;

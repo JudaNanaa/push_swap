@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 15:32:08 by itahri            #+#    #+#             */
-/*   Updated: 2024/06/06 11:17:13 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/10 06:21:08 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libft.h"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 512
+#  define BUFFER_SIZE 1
 # endif // !BUFFER_SIZE
 
 int		ft_strlen_gnl(char *str, int cas);

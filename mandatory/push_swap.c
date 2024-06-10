@@ -6,23 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:51 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 18:35:54 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/10 06:29:17 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
-
-t_stacks	*ft_hundred_or_bellow(t_stacks *stacks, int pivot, int len_stacka)
-{
-	while (len_stacka-- > 3)
-	{
-		(void)pivot;
-		stacks = ft_push_b(stacks);
-		if (stacks->stack_b->nb > pivot)
-			stacks->stack_b = ft_rotate_b(stacks, 1);
-	}
-	return (stacks);
-}
 
 t_stacks	*ft_all_push_in_b(t_stacks *stacks, int pivot, int len_stacka)
 {
@@ -33,7 +21,7 @@ t_stacks	*ft_all_push_in_b(t_stacks *stacks, int pivot, int len_stacka)
 	tmp = len_stacka;
 	trois_quart = ft_find_trois_quart(stacks->stack_a, len_stacka);
 	un_quart = ft_find_un_quart(stacks->stack_a, tmp);
-	while (len_stacka > (tmp / 2) - 1 && len_stacka > 5)
+	while (len_stacka > (tmp / 2) && len_stacka > 5)
 	{
 		stacks = ft_presort_stack_a_part1(stacks, pivot);
 		stacks = ft_push_b(stacks);
@@ -41,7 +29,7 @@ t_stacks	*ft_all_push_in_b(t_stacks *stacks, int pivot, int len_stacka)
 			stacks->stack_b = ft_rotate_b(stacks, 1);
 		len_stacka--;
 	}
-	while (len_stacka > (tmp / 4) - 1 && len_stacka > 5)
+	while (len_stacka > (tmp / 4) && len_stacka > 5)
 	{
 		stacks = ft_presort_stack_a_part2(stacks, un_quart);
 		stacks = ft_push_b(stacks);

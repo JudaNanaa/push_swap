@@ -6,13 +6,13 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 00:00:31 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 18:37:05 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/10 00:00:54 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker_bonus.h"
 
-t_stack	*ft_swap_a(t_stack *stack_a)
+t_stack	*ft_swap_a_bonus(t_stack *stack_a)
 {
 	t_stack	*buff;
 
@@ -25,7 +25,7 @@ t_stack	*ft_swap_a(t_stack *stack_a)
 	return (stack_a);
 }
 
-t_stack	*ft_swap_b(t_stack *stack_b)
+t_stack	*ft_swap_b_bonus(t_stack *stack_b)
 {
 	t_stack	*buff;
 
@@ -38,7 +38,7 @@ t_stack	*ft_swap_b(t_stack *stack_b)
 	return (stack_b);
 }
 
-t_stack	*ft_rotate_a(t_stack *stack_a)
+t_stack	*ft_rotate_a_bonus(t_stack *stack_a)
 {
 	t_stack	*buff;
 	t_stack	*second;
@@ -54,7 +54,7 @@ t_stack	*ft_rotate_a(t_stack *stack_a)
 	return (second);
 }
 
-t_stack	*ft_rotate_b(t_stack *stack_b)
+t_stack	*ft_rotate_b_bonus(t_stack *stack_b)
 {
 	t_stack	*buff;
 	t_stack	*second;

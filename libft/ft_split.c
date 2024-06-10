@@ -56,7 +56,7 @@ static char	*ft_norminette(char const *s, int i, int j)
 
 static int	ft_free_split(char **split, int index)
 {
-	if (split[index - 1] == NULL)
+	if (split[index] == NULL)
 	{
 		while (index >= 0)
 			free(split[index--]);
@@ -85,8 +85,8 @@ static int	ft_split_words(char **split, char const *s, char *c)
 		}
 		if (!ft_is_in_charset(s[i - 1], c))
 		{
-			split[index++] = ft_norminette(s, i, j);
-			if (ft_free_split(split, index) == 0)
+			split[index] = ft_norminette(s, i, j);
+			if (ft_free_split(split, index++) == 0)
 				return (0);
 		}
 	}
@@ -101,6 +101,8 @@ char	**ft_split(char *s, char *c)
 	if (!s)
 	{
 		split = malloc(sizeof(char *));
+		if (!split)
+			return (NULL);
 		split[0] = NULL;
 		return (split);
 	}
@@ -108,7 +110,7 @@ char	**ft_split(char *s, char *c)
 	if (split == NULL)
 		return (NULL);
 	if (ft_split_words(split, s, c) == 0)
-		return (NULL);
+		return (free(split), NULL);
 	return (split);
 }
 

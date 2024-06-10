@@ -11,7 +11,9 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror 
+
+OBJS_DIR = .objets/
 
 SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
        ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
@@ -25,13 +27,19 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
        ft_printf.c ft_itoa_printf.c functions.c functions2.c functions3.c \
 	functions4.c printf_utils.c check_functions.c ft_split_utils.c
 
-OBJS = $(SRCS:.c=.o)
+SRCS := $(SRCS:%=./%)
+
+OBJS = $(SRCS:./%.c=$(OBJS_DIR)/%.o)
 
 SRCS_BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstlast_bonus.c ft_lstsize_bonus.c \
               ft_lstadd_back_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c \
               ft_lstclear_bonus.c ft_lstdelone_bonus.c
 
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+SRCS_BONUS := $(SRCS_BONUS:%=./%)
+
+OBJS_BONUS = $(SRCS_BONUS:./%.c=$(OBJS_DIR)/%.o)
+
+DIR_DUP = mkdir -p $(@D)
 
 NAME = libft.a
 
@@ -40,7 +48,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
-%.o : %.c
+$(OBJS_DIR)/%.o : %.c
+	@$(DIR_DUP)
 	$(CC) $(CFLAGS) -c -include ./libft.h $< -o $@
 
 bonus: all $(OBJS_BONUS)
@@ -49,16 +58,12 @@ bonus: all $(OBJS_BONUS)
 %.o : %.c
 	$(CC) $(CFLAGS) -c -include ./libft.h $< -o $@
 
-so:
-	$(CC) -fPIC $(CFLAGS) $(SRCS)
-	gcc -shared -o libft.so $(OBJS)
-
 clean:
-	rm -rf $(OBJS) $(OBJS_BONUS)
+	rm -rf $(OBJS_DIR) 
                                                                              
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus test so
+.PHONY: all clean fclean re bonus
