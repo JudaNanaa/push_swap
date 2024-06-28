@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:06:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/30 19:15:47 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/20 15:12:43 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*ft_norminette(char const *s, int i, int j)
 	return (str);
 }
 
-static int	ft_free_split(char **split, int index)
+int	ft_free_split1(char **split, int index)
 {
 	if (split[index] == NULL)
 	{
@@ -86,7 +86,7 @@ static int	ft_split_words(char **split, char const *s, char *c)
 		if (!ft_is_in_charset(s[i - 1], c))
 		{
 			split[index] = ft_norminette(s, i, j);
-			if (ft_free_split(split, index++) == 0)
+			if (ft_free_split1(split, index++) == 0)
 				return (0);
 		}
 	}

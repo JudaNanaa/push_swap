@@ -6,13 +6,13 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 21:03:54 by madamou           #+#    #+#              #
-#    Updated: 2024/05/16 21:41:01 by madamou          ###   ########.fr        #
+#    Updated: 2024/06/27 15:22:33 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3
 
 SRCS_DIR = mandatory/
 

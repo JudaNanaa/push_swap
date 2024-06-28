@@ -69,7 +69,7 @@ char	*ft_reallocc(char *print, int len_realloc)
 	i = ft_len_print(2);
 	tmp = malloc(sizeof(char) * (i + len_realloc + 1));
 	if (!tmp)
-		return (NULL);
+		return (free(print), NULL);
 	tmp[0] = '\0';
 	tmp = ft_strcpyy(tmp, print);
 	free(print);

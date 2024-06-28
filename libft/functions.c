@@ -20,7 +20,7 @@ char	*ft_str_to_print(char *print, char c)
 	i = ft_len_print(2);
 	tmp = malloc(sizeof(char) * (i + 1));
 	if (!tmp)
-		return (NULL);
+		return (free(print), NULL);
 	tmp[0] = '\0';
 	tmp = ft_strcpyy(tmp, print);
 	free(print);
@@ -55,13 +55,13 @@ char	*ft_decimal(char *print, int nb, int cas)
 
 	result = ft_itoa(nb);
 	if (!result)
-		return (NULL);
+		return (free(print), NULL);
 	len_result = ft_strlen1(result);
 	if ((cas == 2 || cas == 3) && nb >= 0)
 		len_result++;
 	print = ft_reallocc(print, len_result);
 	if (!print)
-		return (NULL);
+		return (free(result), NULL);
 	if (cas == 2 && nb >= 0)
 		print = ft_strcatt(print, " ");
 	if (cas == 3 && nb >= 0)

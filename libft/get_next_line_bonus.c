@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 15:31:37 by itahri            #+#    #+#             */
-/*   Updated: 2024/05/28 02:12:48 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/28 21:13:04 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ char	*ft_buff_to_all(char *all, char *buff)
 	return (str);
 }
 
-char	*ft_read_file(int fd, char *sortie)
+char	*ft_read_file(int fd, char *sortie, char *buff)
 {
-	char	buff[BUFFER_SIZE + 1];
-	int		nb_read;
+	int	nb_read;
 
 	buff[0] = '\0';
 	nb_read = BUFFER_SIZE;
@@ -58,7 +57,7 @@ char	*ft_read_file(int fd, char *sortie)
 
 char	*get_next_line(int fd)
 {
-	static char	stach[10000][BUFFER_SIZE + 1];
+	static char	stach[1010][BUFFER_SIZE + 1];
 	char		*sortie;
 
 	if (fd < 0)
@@ -68,24 +67,25 @@ char	*get_next_line(int fd)
 		return (stach[fd][0] = '\0', NULL);
 	sortie[0] = '\0';
 	sortie = ft_strcpy(sortie, stach[fd]);
-	sortie = ft_read_file(fd, sortie);
+	sortie = ft_read_file(fd, sortie, stach[fd]);
 	if (!sortie)
 		return (stach[fd][0] = '\0', NULL);
 	if (ft_check_if_newline(sortie) == 1)
 	{
 		ft_strcpy(stach[fd], &sortie[ft_strlen_gnl(sortie, 2)]);
-		ft_format_sortie(sortie);
+		sortie = ft_format_sortie(sortie);
 	}
 	else
 	{
+		stach[fd][0] = '\0';
 		if (sortie[0] == '\0')
-			return (free(sortie), stach[fd][0] = '\0', NULL);
-		ft_strcpy(stach[fd], &sortie[ft_strlen_gnl(sortie, 1)]);
+			return (free(sortie), NULL);
 	}
 	return (sortie);
 }
 
-/*#include <fcntl.h>
+/*
+#include <fcntl.h>
 
 int	main(void)
 {
@@ -93,16 +93,30 @@ int	main(void)
 	char	*line;
 
 	// Ouvrir le fichier en lecture
-	fd = open("test", O_RDONLY);
+	fd = open("read_error.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error opening file");
 		return (1);
 	}
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(10);
+	printf("%s", line);
+	free(line);
+	close(fd);
+	fd = open("read_error.txt", O_RDONLY);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("%s", line);
+		printf("[%s]\n", line);
 		free(line);
 	}
+	line = get_next_line(10);
+	printf("%s", line);
+	free(line);
 	return (0);
 }*/

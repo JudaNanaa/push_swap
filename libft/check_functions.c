@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:01:40 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/24 18:21:03 by madamou          ###   ########.fr       */
+/*   Updated: 2024/06/20 15:14:46 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 int	ft_check_basic(const char *str, int i)
 {
 	if (str[i] == '%' && (str[i + 1] == 'c' || str[i + 1] == 's'
-			|| str[i + 1] == 'd' || str[i + 1] == 'i'
-			|| str[i + 1] == 'u' || str[i + 1] == 'x'
-			|| str[i + 1] == 'X' || str[i + 1] == '%'
+			|| str[i + 1] == 'd' || str[i + 1] == 'i' || str[i + 1] == 'u'
+			|| str[i + 1] == 'x' || str[i + 1] == 'X' || str[i + 1] == '%'
 			|| str[i + 1] == 'p'))
 		return (1);
 	return (0);

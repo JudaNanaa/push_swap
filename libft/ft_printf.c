@@ -68,5 +68,6 @@ int	ft_printf(const char *str, ...)
 /*int	main(void)
 {
 	//ft_printf(" %d\n", ft_printf("je suis en train de test %"));
-	//ft_printf(" %d\n", printf("je suis en train de test %et imad est gentil"));
+	//ft_printf(" %d\n", printf("je suis en train de test
+				%et imad est gentil"));
 }*/
