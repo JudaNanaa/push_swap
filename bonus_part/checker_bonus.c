@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:33:21 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/10 06:18:24 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:37:09 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_stacks	*ft_execute_prompt(char *line, t_stacks *st)
 		st = ft_push_b_bonus(st);
 	else
 	{
-		write(2, "Error\n", 6);
+		ft_write(2, "Error\n", 6);
 		free(line);
 		ft_free_error(st);
 	}

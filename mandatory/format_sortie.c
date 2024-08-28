@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:44:43 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/09 13:28:07 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:35:04 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_print_movements_rr(char **split, char *comp, char *srch, int i)
 		{
 			if (ft_strcmp(split[j], srch) == 0)
 			{
-				write(STDOUT_FILENO, "rr\n", 3);
+				ft_write(STDOUT_FILENO, "rr\n", 3);
 				ft_strcpy(split[j], "");
 				break ;
 			}
@@ -58,8 +58,8 @@ void	ft_print_movements_rr(char **split, char *comp, char *srch, int i)
 		}
 		if (!split[j] && split[i][0])
 		{
-			write(STDOUT_FILENO, split[i], ft_strlen(split[i]));
-			write(STDOUT_FILENO, "\n", 1);
+			ft_write(STDOUT_FILENO, split[i], ft_strlen(split[i]));
+			ft_write(STDOUT_FILENO, "\n", 1);
 		}
 	}
 }
@@ -75,7 +75,7 @@ void	ft_print_movements_rrr(char **split, char *comp, char *srch, int i)
 		{
 			if (ft_strcmp(split[j], srch) == 0)
 			{
-				write(STDOUT_FILENO, "rrr\n", 4);
+				ft_write(STDOUT_FILENO, "rrr\n", 4);
 				ft_strcpy(split[j], "");
 				break ;
 			}
@@ -83,8 +83,8 @@ void	ft_print_movements_rrr(char **split, char *comp, char *srch, int i)
 		}
 		if (!split[j] && split[i][0])
 		{
-			write(STDOUT_FILENO, split[i], ft_strlen(split[i]));
-			write(STDOUT_FILENO, "\n", 1);
+			ft_write(STDOUT_FILENO, split[i], ft_strlen(split[i]));
+			ft_write(STDOUT_FILENO, "\n", 1);
 		}
 	}
 }

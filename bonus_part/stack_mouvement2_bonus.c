@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_mouvement2_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:15:01 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/10 06:02:08 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:37:35 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_stack	*ft_rev_rotate_a_bonus(t_stack *stack_a)
 	first = stack_a;
 	if (ft_len_stack(stack_a) <= 1)
 		return (stack_a);
+	before_last = stack_a;
 	while (stack_a->next)
 	{
 		before_last = stack_a;
@@ -41,6 +42,7 @@ t_stack	*ft_rev_rotate_b_bonus(t_stack *stack_b)
 	first = stack_b;
 	if (ft_len_stack(stack_b) <= 1)
 		return (stack_b);
+	before_last = stack_b;
 	while (stack_b->next)
 	{
 		before_last = stack_b;

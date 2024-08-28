@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_mouvement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 00:00:31 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/09 13:30:48 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:32:01 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_stack	*ft_swap_a(t_stacks *stacks)
 	stacks->stack_a = stacks->stack_a->next;
 	buff->next = stacks->stack_a->next;
 	stacks->stack_a->next = buff;
-	write(1, "sa\n", 3);
+	ft_write(1, "sa\n", 3);
 	return (stacks->stack_a);
 }
 
@@ -36,7 +36,7 @@ t_stack	*ft_swap_b(t_stacks *stacks)
 	stacks->stack_b = stacks->stack_b->next;
 	buff->next = stacks->stack_b->next;
 	stacks->stack_b->next = buff;
-	write(1, "sb\n", 3);
+	ft_write(1, "sb\n", 3);
 	return (stacks->stack_b);
 }
 

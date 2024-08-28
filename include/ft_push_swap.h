@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:12:28 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/09 13:28:54 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:31:36 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int					ft_is_empty_stack(t_stack *st);
 int					ft_check_if_sort(t_stack *stack_a, t_stack *stack_b);
 int					ft_stock_movement(char *move, int cas, t_stacks *stacks);
 int					ft_format_print(char *buffer);
+int					ft_write(int fd, char *str, size_t len);
 
 char				**ft_concatenate_all_args(char **argv);
 char				**ft_free_args(char **argv);

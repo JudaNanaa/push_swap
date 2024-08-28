@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:34:21 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/10 00:01:47 by madamou          ###   ########.fr       */
+/*   Updated: 2024/08/28 21:36:55 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int					ft_check_if_duplicate(char **str, int index);
 int					ft_len_stack(t_stack *st);
 int					ft_is_empty_stack(t_stack *st);
 int					ft_check_if_sort(t_stack *stack_a, t_stack *stack_b);
+int					ft_write(int fd, char *str, size_t len);
 
 char				**ft_concatenate_all_args(char **argv);
 char				**ft_check_args(char **argv);
