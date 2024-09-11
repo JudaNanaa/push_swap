@@ -1,3 +1,7 @@
 Push-Swap-Tester/
 push_swap_tester-1.6.0/
 push_swap_visualizer/
+.vscode/
+.objets/
+libft.a
+push_swap

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:16:54 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/04 14:14:53 by madamou          ###   ########.fr       */
+/*   Updated: 2024/09/11 12:08:24 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ int	ft_check_if_int(char *str)
 	index = 0;
 	result = 0;
 	sign = 1;
-	if (ft_strlen(str) >= 12)
-		return (0);
 	if (str[0] == '+' || str[0] == '-')
 	{
 		index++;
@@ -91,10 +89,12 @@ int	ft_check_if_int(char *str)
 			sign = -sign;
 	}
 	while (str[index] >= '0' && str[index] <= '9')
+	{
 		result = (result * 10) + (str[index++] - '0');
-	if ((result * sign) >= -2147483648 && (result * sign) <= 2147483647)
-		return (1);
-	return (0);
+		if ((result * sign) < -2147483648 || (result * sign) > 2147483647)
+			return (0);
+	}
+	return (1);
 }
 
 int	ft_check_if_duplicate(char **str, int index)
