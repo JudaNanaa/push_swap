@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:51 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/04 22:39:40 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 00:52:25 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_all_push_in_b(t_stacks *stacks, int len_stacka)
 {
-	int	trois_quart;
+	// int	trois_quart;
 	int	un_quart;
 	int	tmp;
 	int	pivot;
@@ -23,13 +23,13 @@ void	ft_all_push_in_b(t_stacks *stacks, int len_stacka)
 		return ;
 	tmp = len_stacka;
 	pivot = ft_find_pivot(stacks->stack_a, len_stacka);
-	trois_quart = ft_find_trois_quart(stacks->stack_a, len_stacka);
+	// trois_quart = ft_find_trois_quart(stacks->stack_a, len_stacka);
 	un_quart = ft_find_un_quart(stacks->stack_a, tmp);
 	while (len_stacka > (tmp / 2) && len_stacka > 3)
 	{
 		stacks = ft_presort_stack_a_part1(stacks, pivot);
 		stacks = ft_push_b(stacks);
-		if (stacks->stack_b->nb >= trois_quart)
+		if (stacks->stack_b->nb >= un_quart)
 			stacks->stack_b = ft_rotate_b(stacks, 1);
 		len_stacka--;
 	}
