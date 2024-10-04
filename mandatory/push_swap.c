@@ -3,25 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:51 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/10 06:29:17 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/04 22:39:40 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 
-t_stacks	*ft_all_push_in_b(t_stacks *stacks, int pivot, int len_stacka)
+void	ft_all_push_in_b(t_stacks *stacks, int len_stacka)
 {
 	int	trois_quart;
 	int	un_quart;
 	int	tmp;
+	int	pivot;
 
+	if (len_stacka == 3)
+		return ;
 	tmp = len_stacka;
+	pivot = ft_find_pivot(stacks->stack_a, len_stacka);
 	trois_quart = ft_find_trois_quart(stacks->stack_a, len_stacka);
 	un_quart = ft_find_un_quart(stacks->stack_a, tmp);
-	while (len_stacka > (tmp / 2) && len_stacka > 5)
+	while (len_stacka > (tmp / 2) && len_stacka > 3)
 	{
 		stacks = ft_presort_stack_a_part1(stacks, pivot);
 		stacks = ft_push_b(stacks);
@@ -29,19 +33,14 @@ t_stacks	*ft_all_push_in_b(t_stacks *stacks, int pivot, int len_stacka)
 			stacks->stack_b = ft_rotate_b(stacks, 1);
 		len_stacka--;
 	}
-	while (len_stacka > (tmp / 4) && len_stacka > 5)
-	{
-		stacks = ft_presort_stack_a_part2(stacks, un_quart);
-		stacks = ft_push_b(stacks);
-		len_stacka--;
-	}
-	while (len_stacka-- > 3)
-		stacks = ft_push_b(stacks);
-	return (stacks);
+	ft_all_push_in_b(stacks, len_stacka);
 }
 
-t_stacks	*ft_final_sort(t_stacks *stacks, int pivot)
+void	ft_final_sort(t_stacks *stacks)
 {
+	int	pivot;
+
+	pivot = ft_find_pivot(stacks->stack_a, ft_len_stack(stacks->stack_a));
 	if (stacks->stack_a->nb > pivot)
 	{
 		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
@@ -54,30 +53,31 @@ t_stacks	*ft_final_sort(t_stacks *stacks, int pivot)
 			stacks->stack_a = ft_rev_rotate_a(stacks, 1);
 		ft_stock_movement("", 2, stacks);
 	}
-	return (stacks);
 }
 
 t_stack	*ft_push_swap(t_stack *stack_a)
 {
 	int			len_stack;
-	int			pivot;
 	int			i;
-	t_stacks	*stacks;
+	t_stacks	stacks;
 
-	stacks = malloc(sizeof(t_stacks));
-	if (!stacks)
-		return (ft_clear_stack(stack_a), NULL);
-	stacks->stack_a = stack_a;
-	stacks->stack_b = NULL;
-	len_stack = ft_len_stack(stacks->stack_a);
-	pivot = ft_find_pivot(stacks->stack_a, len_stack);
+	stacks.stack_a = stack_a;
+	stacks.stack_b = NULL;
+	len_stack = ft_len_stack(stacks.stack_a);
 	if (len_stack == 2)
-		return (stack_a = ft_2_numbers(stacks), free(stacks), stack_a);
-	stacks = ft_all_push_in_b(stacks, pivot, len_stack);
-	stacks->stack_a = ft_if_3_numbers(stacks);
+		return (stack_a = ft_2_numbers(&stacks), stack_a);
+	if (len_stack > 5)
+		ft_all_push_in_b(&stacks, len_stack);
+	else
+	{
+		i = len_stack;
+		while (i-- > 3)
+			ft_push_b(&stacks);
+	}
+	stacks.stack_a = ft_if_3_numbers(&stacks);
 	i = 2;
 	while (++i < len_stack)
-		stacks = ft_pa_ra_or_rra(stacks, len_stack - i, i);
-	stacks = ft_final_sort(stacks, pivot);
-	return (stack_a = stacks->stack_a, free(stacks), stack_a);
+		ft_pa_ra_or_rra(&stacks, len_stack - i, i);
+	ft_final_sort(&stacks);
+	return (stacks.stack_a);
 }

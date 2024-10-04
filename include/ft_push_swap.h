@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:12:28 by madamou           #+#    #+#             */
-/*   Updated: 2024/08/28 21:31:36 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/04 21:18:38 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ t_stack				*ft_del_up_stack(t_stack *stack);
 
 t_stacks			*ft_push_a(t_stacks *stacks);
 t_stacks			*ft_push_b(t_stacks *stacks);
-t_stacks			*ft_pa_ra_or_rra(t_stacks *stacks, int len_stackb,
-						int len_stacka);
 t_stacks			*ft_place_top_b(t_stacks *imad, int nb, int len_stackb);
 t_stacks			*ft_presort_stack_a_part1(t_stacks *stacks, int pivot);
 t_stacks			*ft_presort_stack_a_part2(t_stacks *stacks, int un_quart);
 
+void				ft_pa_ra_or_rra(t_stacks *stacks, int len_stackb,
+						int len_stacka);
 #endif

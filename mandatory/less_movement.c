@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   less_movement.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 18:35:44 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/04 21:20:23 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 
-t_stacks	*ft_pa_ra_or_rra(t_stacks *stacks, int len_stb, int len_sta)
+void	ft_pa_ra_or_rra(t_stacks *stacks, int len_stb, int len_sta)
 {
 	int	nb;
 	int	buff;
@@ -32,7 +32,6 @@ t_stacks	*ft_pa_ra_or_rra(t_stacks *stacks, int len_stb, int len_sta)
 			stacks->stack_a = ft_rev_rotate_a(stacks, 1);
 	}
 	stacks = ft_push_a(stacks);
-	return (stacks);
 }
 
 int	ft_less(int a, int b)
