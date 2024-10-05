@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 02:45:11 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 12:19:10 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ int ft_max(int a, int b)
 int	ft_less_movement(t_stack *stack_a, t_stack *stack_b, int len_stackb,
 		int len_stacka)
 {
-	// int tab[99999];
-	int tab_b[99999];
 	int tab_cost[99999];
 	int tab_nb[99999];
 	int i;
@@ -87,16 +85,14 @@ int	ft_less_movement(t_stack *stack_a, t_stack *stack_b, int len_stackb,
 	int j;
 
 	i = 0;
-	// ft_get_push_cost(stack_a, stack_b, tab, len_stackb);
-	ft_less_movement_in_b(tab_b, len_stackb);
 	while (i < len_stackb)
 	{
 		next_in_a = ft_find_nb_stacka(stack_a, stack_b->nb);
 		if ((next_in_a < len_stacka / 2 && i < len_stackb / 2)
 			|| (next_in_a >= len_stacka / 2 && i >= len_stackb / 2))
-			tab_cost[i] = ft_max(next_in_a, tab_b[i]);
+			tab_cost[i] = ft_max(ft_less(next_in_a, len_stacka - next_in_a), ft_less(i, len_stackb - i));
 		else
-		 	tab_cost[i] = next_in_a + tab_b[i];
+		 	tab_cost[i] = ft_less(next_in_a, len_stacka - next_in_a) + ft_less(i, len_stackb - i);
 		tab_nb[i] = stack_b->nb;
 		stack_b = stack_b->next;
 		i++;
