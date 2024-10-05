@@ -6,78 +6,84 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:51 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 00:52:25 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 15:40:27 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
+#include <time.h>
 
-void	ft_all_push_in_b(t_stacks *stacks, int len_stacka)
+void	ft_all_push_in_b(t_stacks *stacks)
 {
-	// int	trois_quart;
 	int	un_quart;
 	int	tmp;
-	int	pivot;
+	int	mediane;
 
-	if (len_stacka == 3)
+	if (stacks->len_stacka == 3)
 		return ;
-	tmp = len_stacka;
-	pivot = ft_find_pivot(stacks->stack_a, len_stacka);
-	// trois_quart = ft_find_trois_quart(stacks->stack_a, len_stacka);
+	tmp = stacks->len_stacka;
+	mediane = ft_find_pivot(stacks->stack_a, stacks->len_stacka);
 	un_quart = ft_find_un_quart(stacks->stack_a, tmp);
-	while (len_stacka > (tmp / 2) && len_stacka > 3)
+	while (stacks->len_stacka > (tmp / 2) && stacks->len_stacka > 3)
 	{
-		stacks = ft_presort_stack_a_part1(stacks, pivot);
-		stacks = ft_push_b(stacks);
+		stacks = ft_presort_stack_a_part1(stacks, mediane);
+		ft_push_b(stacks);
 		if (stacks->stack_b->nb >= un_quart)
-			stacks->stack_b = ft_rotate_b(stacks, 1);
-		len_stacka--;
+			ft_rotate_b(stacks, 1);
 	}
-	ft_all_push_in_b(stacks, len_stacka);
+	ft_all_push_in_b(stacks);
 }
 
 void	ft_final_sort(t_stacks *stacks)
 {
 	int	pivot;
 
-	pivot = ft_find_pivot(stacks->stack_a, ft_len_stack(stacks->stack_a));
+	pivot = ft_find_pivot(stacks->stack_a, stacks->len_stacka);
 	if (stacks->stack_a->nb > pivot)
 	{
 		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
-			stacks->stack_a = ft_rotate_a(stacks, 1);
+			ft_rotate_a(stacks, 1);
 		ft_stock_movement("", 2, stacks);
 	}
 	else
 	{
 		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
-			stacks->stack_a = ft_rev_rotate_a(stacks, 1);
+			ft_rev_rotate_a(stacks, 1);
 		ft_stock_movement("", 2, stacks);
 	}
 }
 
+void set_stacks(t_stacks *stacks, t_stack *stack_a)
+{
+	stacks->stack_a = stack_a;
+	stacks->first_a = stack_a;
+	while (stack_a->next)
+		stack_a = stack_a->next;
+	stacks->len_stacka = ft_len_stack(stacks->stack_a);
+	stacks->last_a = stack_a;
+	stacks->stack_b = NULL;
+	stacks->first_b = NULL;
+	stacks->last_b = NULL;
+	stacks->len_stackb = 0;
+}
+
 t_stack	*ft_push_swap(t_stack *stack_a)
 {
-	int			len_stack;
-	int			i;
 	t_stacks	stacks;
 
-	stacks.stack_a = stack_a;
-	stacks.stack_b = NULL;
-	len_stack = ft_len_stack(stacks.stack_a);
-	if (len_stack == 2)
-		return (stack_a = ft_2_numbers(&stacks), stack_a);
-	if (len_stack > 5)
-		ft_all_push_in_b(&stacks, len_stack);
+	set_stacks(&stacks, stack_a);
+	if (stacks.len_stacka == 2)
+		return (ft_2_numbers(&stacks), stack_a);
+	if (stacks.len_stacka > 5)
+		ft_all_push_in_b(&stacks);
 	else
 	{
-		i = len_stack;
-		while (i-- > 3)
+		while (stacks.len_stacka > 3)
 			ft_push_b(&stacks);
 	}
-	stacks.stack_a = ft_if_3_numbers(&stacks);
-	i = 2;
-	while (++i < len_stack)
-		ft_pa_ra_or_rra(&stacks, len_stack - i, i);
+	ft_if_3_numbers(&stacks);
+	while (stacks.len_stackb)
+		ft_pa_ra_or_rra(&stacks);
 	ft_final_sort(&stacks);
 	return (stacks.stack_a);
 }

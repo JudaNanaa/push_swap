@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:39:41 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 01:47:51 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 15:41:05 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_find_next(t_stack *stack, int nb)
 			if (buff == nb)
 				buff = stack->nb;
 			else
-				buff = ft_less(buff, stack->nb);
+				buff = ft_min(buff, stack->nb);
 		}
 		if (min > stack->nb)
 			min = stack->nb;
@@ -62,12 +62,19 @@ t_stacks	*ft_place_top_b(t_stacks *stacks, int nb, int len_stackb)
 	if (ft_find_nb(stacks->stack_b, nb) <= (len_stackb / 2))
 	{
 		while (stacks->stack_b->nb != nb)
-			stacks->stack_b = ft_rotate_b(stacks, 1);
+			ft_rotate_b(stacks, 1);
 	}
 	else
 	{
 		while (stacks->stack_b->nb != nb)
-			stacks->stack_b = ft_rev_rotate_b(stacks, 1);
+			ft_rev_rotate_b(stacks, 1);
 	}
 	return (stacks);
+}
+
+int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
 }

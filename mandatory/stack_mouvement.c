@@ -6,72 +6,85 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 00:00:31 by madamou           #+#    #+#             */
-/*   Updated: 2024/08/28 21:32:01 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 15:24:04 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 
-t_stack	*ft_swap_a(t_stacks *stacks)
+void	ft_swap_a(t_stacks *stacks)
 {
-	t_stack	*buff;
+	t_stack	*first;
+	t_stack	*second;
+	t_stack	*third;
 
-	buff = stacks->stack_a;
-	if (ft_len_stack(stacks->stack_a) <= 1)
-		return (stacks->stack_a);
-	stacks->stack_a = stacks->stack_a->next;
-	buff->next = stacks->stack_a->next;
-	stacks->stack_a->next = buff;
+	if (stacks->len_stacka <= 1)
+		return ;
+	first = stacks->stack_a;
+	second = stacks->stack_a->next;
+	third = stacks->stack_a->next->next;
+	second->next = first;
+	first->next = third;
+	stacks->stack_a = second;
+	stacks->first_a = second;
 	ft_write(1, "sa\n", 3);
-	return (stacks->stack_a);
 }
 
-t_stack	*ft_swap_b(t_stacks *stacks)
+void	ft_swap_b(t_stacks *stacks)
 {
-	t_stack	*buff;
+	t_stack	*first;
+	t_stack	*second;
+	t_stack	*third;
 
-	buff = stacks->stack_b;
-	if (ft_len_stack(stacks->stack_b) <= 1)
-		return (stacks->stack_b);
-	stacks->stack_b = stacks->stack_b->next;
-	buff->next = stacks->stack_b->next;
-	stacks->stack_b->next = buff;
+	if (stacks->len_stackb <= 1)
+		return ;
+	first = stacks->stack_b;
+	second = stacks->stack_b->next;
+	third = stacks->stack_b->next->next;
+	second->next = first;
+	first->next = third;
+	stacks->stack_b = second;
+	stacks->first_b = second;
 	ft_write(1, "sb\n", 3);
-	return (stacks->stack_b);
 }
 
-t_stack	*ft_rotate_a(t_stacks *stacks, int cas)
+void	ft_rotate_a(t_stacks *stacks, int cas)
 {
-	t_stack	*buff;
+	t_stack	*first;
 	t_stack	*second;
 
-	buff = stacks->stack_a;
+	if (stacks->len_stacka <= 1)
+		return ;
+	first = stacks->stack_a;
 	second = stacks->stack_a->next;
-	if (ft_len_stack(stacks->stack_a) <= 1)
-		return (stacks->stack_a);
-	while (stacks->stack_a->next)
-		stacks->stack_a = stacks->stack_a->next;
-	stacks->stack_a->next = buff;
-	buff->next = NULL;
+	// while (stacks->stack_a->next)
+	// 	stacks->stack_a = stacks->stack_a->next;
+	
+	stacks->last_a->next = first;
+	first->next = NULL;
+	stacks->last_a = first;
+	stacks->first_a = second;
+	stacks->stack_a = second;
 	if (cas == 1)
 		ft_stock_movement("ra\n", 1, stacks);
-	return (second);
 }
 
-t_stack	*ft_rotate_b(t_stacks *stacks, int cas)
+void	ft_rotate_b(t_stacks *stacks, int cas)
 {
-	t_stack	*buff;
+	t_stack	*first;
 	t_stack	*second;
 
-	buff = stacks->stack_b;
+	if (stacks->len_stackb <= 1)
+		return ;
+	first = stacks->stack_b;
 	second = stacks->stack_b->next;
-	if (ft_len_stack(stacks->stack_b) <= 1)
-		return (stacks->stack_b);
-	while (stacks->stack_b->next)
-		stacks->stack_b = stacks->stack_b->next;
-	stacks->stack_b->next = buff;
-	buff->next = NULL;
+	// while (stacks->stack_b->next)
+	// 	stacks->stack_b = stacks->stack_b->next;
+	stacks->last_b->next = first;
+	first->next = NULL;
+	stacks->last_b = first;
+	stacks->first_b = second;
+	stacks->stack_b = second;
 	if (cas == 1)
 		ft_stock_movement("rb\n", 1, stacks);
-	return (second);
 }
