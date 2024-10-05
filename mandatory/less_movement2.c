@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   less_movement2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:39:41 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 18:35:48 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 01:47:51 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_find_next(t_stack *stack, int nb)
 	return (buff);
 }
 
-int	*ft_less_movement_in_b(int *tab, int len_stackb)
+void ft_less_movement_in_b(int *tab, int len_stackb)
 {
 	int	i;
 
@@ -55,7 +55,6 @@ int	*ft_less_movement_in_b(int *tab, int len_stackb)
 			i++;
 		}
 	}
-	return (tab);
 }
 
 t_stacks	*ft_place_top_b(t_stacks *stacks, int nb, int len_stackb)

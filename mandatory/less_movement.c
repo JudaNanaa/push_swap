@@ -6,11 +6,12 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/04 21:20:23 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 02:45:11 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
+#include <stdio.h>
 
 void	ft_pa_ra_or_rra(t_stacks *stacks, int len_stb, int len_sta)
 {
@@ -41,29 +42,72 @@ int	ft_less(int a, int b)
 	return (b);
 }
 
+void ft_get_push_cost(t_stack *stack_a, t_stack *stack_b, int *tab, int len_stackb)
+{
+	int index;
+
+	index = 0;
+	while (index < len_stackb)
+	{
+		tab[index] = ft_find_next(stack_a, stack_b->nb);
+		stack_b = stack_b->next;
+		++index;
+	}
+}
+
+int	ft_find_nb_stacka_new(t_stack *stack_a, int next)
+{
+	int	index;
+
+	index = 0;
+	while (stack_a && stack_a->nb != next)
+	{
+		stack_a = stack_a->next;
+		index++;
+	}
+	return (index);
+}
+
+int ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
 int	ft_less_movement(t_stack *stack_a, t_stack *stack_b, int len_stackb,
 		int len_stacka)
 {
-	int	*tab;
-	int	temp[99999];
-	int	tab_nb[99999];
-	int	i;
-	int	j;
+	// int tab[99999];
+	int tab_b[99999];
+	int tab_cost[99999];
+	int tab_nb[99999];
+	int i;
+	int next_in_a;
+	int j;
 
-	j = 0;
-	tab = ft_less_movement_in_b(temp, len_stackb);
-	while (j < len_stackb)
+	i = 0;
+	// ft_get_push_cost(stack_a, stack_b, tab, len_stackb);
+	ft_less_movement_in_b(tab_b, len_stackb);
+	while (i < len_stackb)
 	{
-		i = ft_find_nb_stacka(stack_a, stack_b->nb);
-		tab[j] += ft_less(i, len_stacka - i);
-		tab_nb[j++] = stack_b->nb;
+		next_in_a = ft_find_nb_stacka(stack_a, stack_b->nb);
+		if ((next_in_a < len_stacka / 2 && i < len_stackb / 2)
+			|| (next_in_a >= len_stacka / 2 && i >= len_stackb / 2))
+			tab_cost[i] = ft_max(next_in_a, tab_b[i]);
+		else
+		 	tab_cost[i] = next_in_a + tab_b[i];
+		tab_nb[i] = stack_b->nb;
 		stack_b = stack_b->next;
+		i++;
 	}
 	j = 0;
 	i = 0;
 	while (j < len_stackb)
 	{
-		if (tab[i] > tab[j])
+		if (tab_cost[i] > tab_cost[j])
+			i = j;
+		else if (tab_cost[i] == tab_cost[j] && tab_nb[j] > tab_nb[i])
 			i = j;
 		j++;
 	}
