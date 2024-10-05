@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:15:01 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 16:18:58 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 21:10:39 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_rev_rotate_a(t_stacks *stacks, int cas)
 	stacks->last_a = before_last;
 	if (cas == 1)
 		ft_stock_movement("rra\n", 1, stacks);
+	if (cas == 2)
+		ft_write(STDOUT_FILENO, "rra\n", 4);
 }
 
 void	ft_rev_rotate_b(t_stacks *stacks, int cas)

@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 07:32:57 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 15:40:02 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 21:06:59 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_if_3_numbers(t_stacks *stacks)
 	if (first < second && second < third)
 		return ;
 	if (first > second && first > third)
-		ft_rotate_a(stacks, 1);
+		ft_rotate_a(stacks, 2);
 	else if (second > first && second > third)
-		ft_rev_rotate_a(stacks, 1);
+		ft_rev_rotate_a(stacks, 2);
 	else
 		ft_swap_a(stacks);
 	ft_if_3_numbers(stacks);

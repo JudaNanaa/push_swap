@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 15:40:48 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 21:39:36 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	ft_pa_ra_or_rra(t_stacks *stacks)
 {
 	int	nb;
 	int	buff;
-
+	
+	if (stacks->len_stackb == 0)
+		return;
 	nb = ft_less_movement(stacks->stack_a, stacks->stack_b, stacks->len_stackb, stacks->len_stacka);
 	stacks = ft_place_top_b(stacks, nb, stacks->len_stackb);
 	buff = ft_find_nb_stacka(stacks->stack_a, nb);
@@ -33,6 +35,7 @@ void	ft_pa_ra_or_rra(t_stacks *stacks)
 			ft_rev_rotate_a(stacks, 1);
 	}
 	ft_push_a(stacks);
+	ft_pa_ra_or_rra(stacks);
 }
 
 int ft_max(int a, int b)

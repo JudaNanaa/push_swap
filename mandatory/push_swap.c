@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:51 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 15:40:27 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/05 22:42:33 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,13 @@ void	ft_final_sort(t_stacks *stacks)
 	pivot = ft_find_pivot(stacks->stack_a, stacks->len_stacka);
 	if (stacks->stack_a->nb > pivot)
 	{
-		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
-			ft_rotate_a(stacks, 1);
-		ft_stock_movement("", 2, stacks);
+		while (stacks->first_a->nb > stacks->last_a->nb)
+			ft_rotate_a(stacks, 2);
 	}
 	else
 	{
-		while (!ft_check_if_sort(stacks->stack_a, stacks->stack_b))
-			ft_rev_rotate_a(stacks, 1);
-		ft_stock_movement("", 2, stacks);
+		while (stacks->last_a->nb < stacks->first_a->nb)
+			ft_rev_rotate_a(stacks, 2);
 	}
 }
 
@@ -73,7 +71,7 @@ t_stack	*ft_push_swap(t_stack *stack_a)
 
 	set_stacks(&stacks, stack_a);
 	if (stacks.len_stacka == 2)
-		return (ft_2_numbers(&stacks), stack_a);
+		return (ft_2_numbers(&stacks), stacks.stack_a);
 	if (stacks.len_stacka > 5)
 		ft_all_push_in_b(&stacks);
 	else
@@ -82,8 +80,7 @@ t_stack	*ft_push_swap(t_stack *stack_a)
 			ft_push_b(&stacks);
 	}
 	ft_if_3_numbers(&stacks);
-	while (stacks.len_stackb)
-		ft_pa_ra_or_rra(&stacks);
+	ft_pa_ra_or_rra(&stacks);
 	ft_final_sort(&stacks);
 	return (stacks.stack_a);
 }
