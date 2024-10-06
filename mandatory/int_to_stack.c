@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   int_to_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:39:11 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 18:35:41 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 17:49:33 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,11 @@ char	**ft_free_args(char **argv)
 	return (argv);
 }
 
-t_stack	*ft_args_to_stack(char **argv)
+t_stack	*ft_args_to_stack(char **argv, int index)
 {
-	int		index;
 	t_stack	*st;
 
 	st = NULL;
-	index = 0;
-	while (argv[index])
-		index++;
 	while (index-- - 1 >= 0)
 	{
 		st = ft_push_stack(st, ft_atoi(argv[index]));

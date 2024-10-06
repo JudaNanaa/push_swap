@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   find_pivot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:37:19 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/10 00:26:20 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 16:25:01 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 
-int	ft_find_pivot(t_stack *stack, int len_stack)
+void	ft_find_pivot(t_stack *stack, int len_stack, int *pivot)
 {
 	int	tab[10000];
 	int	i;
-	int	*result;
-	int	pivot;
 
 	i = 0;
 	while (i < len_stack)
@@ -25,12 +23,17 @@ int	ft_find_pivot(t_stack *stack, int len_stack)
 		tab[i++] = stack->nb;
 		stack = stack->next;
 	}
-	result = ft_sort_tab(tab, i);
+	ft_sort_tab(tab, i);
 	if (len_stack == 4)
-		pivot = result[0];
+	{
+		pivot[0] = tab[0];
+		pivot[1] = tab[0];
+	}
 	else
-		pivot = result[((len_stack - 1) / 2)];
-	return (pivot);
+	{
+		pivot[0] = tab[((len_stack - 1) / 2)];
+		pivot[1] = tab[((len_stack - 1) / 4)];
+	}
 }
 
 int	ft_find_un_quart(t_stack *stack, int len_stack)

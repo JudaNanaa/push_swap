@@ -6,13 +6,13 @@
 #    By: madamou <madamou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 21:03:54 by madamou           #+#    #+#              #
-#    Updated: 2024/10/06 02:05:09 by madamou          ###   ########.fr        #
+#    Updated: 2024/10/06 14:32:13 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3 -O3 -pg -no-pie -fno-builtin
+CFLAGS = -Wall -Wextra -Werror -g3 -O3 -pg  -fno-builtin
 
 SRCS_DIR = mandatory/
 

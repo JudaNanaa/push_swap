@@ -6,33 +6,64 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/06 02:36:53 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 20:26:30 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 #include <stdio.h>
 
+int	ft_find_next_fork(t_stack *first, t_stack *last, int nb, int len);
+
 void	ft_pa_ra_or_rra(t_stacks *stacks)
 {
-	int	nb;
-	int	buff;
+	t_int index;
 	
-	if (stacks->len_stackb == 0)
+	if (stacks->len.b == 0)
 		return;
-	nb = ft_less_movement(stacks->stack_a, stacks->stack_b, stacks->len_stackb, stacks->len_stacka);
-	stacks = ft_place_top_b(stacks, nb, stacks->len_stackb);
-	buff = ft_find_next(stacks->stack_a, nb);
-	nb = stacks->len_stacka - buff;
-	if (buff <= nb)
+	ft_less_movement(stacks);
+	index.a = stacks->index.a;
+	index.b = stacks->index.b;
+	if (index.a < stacks->len.a / 2 && index.b < stacks->len.b / 2)
 	{
-		while (buff-- > 0)
-			ft_rotate_a(stacks, 1);
+		while (index.a && index.b)
+			(ft_db_rotate(stacks), --index.a, --index.b);
+		while (index.a)
+			(ft_rotate_a(stacks, 2), --index.a);
+		while (index.b)
+			(ft_rotate_b(stacks, 2), --index.b);
+	}
+	else if (index.a >= stacks->len.a / 2 && index.b >= stacks->len.b / 2)
+	{
+		while (index.a < stacks->len.a && index.b < stacks->len.b)
+			(ft_db_rev_rotate(stacks), ++index.a, ++index.b);
+		while (index.a < stacks->len.a)
+			(ft_rev_rotate_a(stacks, 2), ++index.a);
+		while (index.b < stacks->len.b)
+			(ft_rev_rotate_b(stacks, 2), ++index.b);
 	}
 	else
 	{
-		while (nb-- > 0)
-			ft_rev_rotate_a(stacks, 1);
+		if (index.a < stacks->len.a / 2)
+		{
+			while (index.a)
+				(ft_rotate_a(stacks, 2), --index.a);
+		}
+		else
+		{
+			while (index.a < stacks->len.a)
+				(ft_rev_rotate_a(stacks, 2), ++index.a);
+		}
+		if (index.b < stacks->len.b / 2)
+		{
+			while (index.b)
+				(ft_rotate_b(stacks, 2), --index.b);
+		}
+		else
+		{
+			while (index.b < stacks->len.b)
+				(ft_rev_rotate_b(stacks, 2), ++index.b);
+		}
 	}
 	ft_push_a(stacks);
 	ft_pa_ra_or_rra(stacks);
@@ -45,40 +76,42 @@ int ft_max(int a, int b)
 	return (b);
 }
 
-int	ft_less_movement(t_stack *stack_a, t_stack *stack_b, int len_stackb,
-		int len_stacka)
+int	ft_less_movement(t_stacks *stacks)
 {
-	int tab_cost[8192];
-	int tab_nb[8192];
+	int current_cost;
+	int save_cost;
+	int save_nb;
 	int i;
 	int next_in_a;
-	int j;
+	t_stack *a;
+	t_stack *b;
 
 	i = 0;
-	while (i < len_stackb)
+	a = stacks->stack_a;
+	b = stacks->stack_b;
+	save_cost = -1;
+	while (i < stacks->len.b)
 	{
-		next_in_a = ft_find_next(stack_a, stack_b->nb);
-		if ((next_in_a < len_stacka / 2 && i < len_stackb / 2)
-			|| (next_in_a >= len_stacka / 2 && i >= len_stackb / 2))
-			tab_cost[i] = ft_max(ft_min(next_in_a, len_stacka - next_in_a), ft_min(i, len_stackb - i));
+		next_in_a = ft_find_next_fork(a, stacks->last_a, b->nb, stacks->len.a);
+		if ((next_in_a < stacks->len.a / 2 && i < stacks->len.b / 2)
+			|| (next_in_a >= stacks->len.a / 2 && i >= stacks->len.b / 2))
+			current_cost = ft_max(ft_min(next_in_a, stacks->len.a - next_in_a), ft_min(i, stacks->len.b - i));
 		else
-		 	tab_cost[i] = ft_min(next_in_a, len_stacka - next_in_a) + ft_min(i, len_stackb - i);
-		tab_nb[i] = stack_b->nb;
-		stack_b = stack_b->next;
+		 	current_cost = ft_min(next_in_a, stacks->len.a - next_in_a) + ft_min(i, stacks->len.b - i);
+		if (save_cost > current_cost || save_cost == -1
+			 || (save_cost == current_cost && save_nb < b->nb))
+		{
+			save_cost = current_cost;
+			stacks->index.a = next_in_a;
+			stacks->index.b = i;
+			save_nb = b->nb;
+		}
+		b = b->next;
 		++i;
 	}
-	j = 0;
-	i = 0;
-	while (j < len_stackb)
-	{
-		if (tab_cost[i] > tab_cost[j])
-			i = j;
-		else if (tab_cost[i] == tab_cost[j] && tab_nb[j] > tab_nb[i])
-			i = j;
-		++j;
-	}
-	return (tab_nb[i]);
+	return (save_nb);
 }
+
 
 int	ft_find_nb(t_stack *stack, int nb)
 {

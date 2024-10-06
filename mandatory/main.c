@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:10:37 by madamou           #+#    #+#             */
-/*   Updated: 2024/08/28 21:54:14 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 17:46:24 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ int	main(int argc, char **argv)
 {
 	t_stack	*st;
 	char	**args;
+	int		len;
 
 	if (argc == 1)
 		return (0);
-	args = ft_check_args(argv);
+	args = ft_check_args(argv, &len);
 	if (args)
 	{
 		if (!args[0])
 			return (ft_free_args(args), ft_write(2, "Error\n", 2));
-		st = ft_args_to_stack(args);
+		st = ft_args_to_stack(args, len);
 		if (!st)
 			return (ft_write(2, "Error\n", 6));
 		if (ft_check_if_sort(st, NULL))

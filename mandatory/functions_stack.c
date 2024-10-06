@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_stack.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:40:57 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 18:35:34 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 17:51:47 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ t_stack	*ft_push_stack(t_stack *st, int nb)
 		return (NULL);
 	}
 	new->nb = nb;
+	new->prev = NULL;
 	new->next = st;
+	if (st)
+		st->prev = new;
 	return (new);
 }
 
