@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:39:41 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 15:41:05 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 03:21:44 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,35 @@
 
 int	ft_find_next(t_stack *stack, int nb)
 {
-	int	buff;
-	int	min;
+	int	buff[2];
+	int	min[2];
+	int index;
 
-	buff = nb;
-	min = stack->nb;
+	index = 0;
+	buff[0] = nb;
+	buff[1] = 0;
+	min[0] = stack->nb;
+	min[1] = 0;
 	while (stack)
 	{
-		if (nb < stack->nb)
+		if (nb < stack->nb && (buff[0] == nb || buff[0] > stack->nb))
 		{
-			if (buff == nb)
-				buff = stack->nb;
-			else
-				buff = ft_min(buff, stack->nb);
+			buff[0] = stack->nb;
+			buff[1] = index;
+			if (buff[0] == nb + 1)
+				return (buff[1]);
 		}
-		if (min > stack->nb)
-			min = stack->nb;
+		if (min[0] > stack->nb)
+		{
+			min[0] = stack->nb;
+			min[1] = index;
+		}
+		++index;
 		stack = stack->next;
 	}
-	if (buff == nb)
-		return (min);
-	return (buff);
+	if (buff[0] == nb)
+		return (min[1]);
+	return (buff[1]);
 }
 
 void ft_less_movement_in_b(int *tab, int len_stackb)

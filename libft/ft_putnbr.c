@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:06:12 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/19 15:06:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/06 01:26:58 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_putnbr(int n)
 	if (nb < 0)
 	{
 		nb = -nb;
-		write(1, "-", 1);
+		if (write(1, "-", 1) == -1)
+			return;
 	}
 	if (nb >= 10)
 	{
@@ -31,7 +32,8 @@ void	ft_putnbr(int n)
 	if (nb < 10)
 	{
 		c = nb + '0';
-		write(1, &c, 1);
+		if (write(1, &c, 1) == -1)
+			return;
 	}
 }
 

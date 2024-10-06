@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:59:58 by madamou           #+#    #+#             */
-/*   Updated: 2024/06/06 11:25:43 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 01:28:52 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	ft_putstr(char *s)
 {
 	if (s)
 	{
-		write(1, s, ft_len_print(2));
+		if (write(1, s, ft_len_print(2)) == -1)
+			return;
 		free(s);
 	}
 }

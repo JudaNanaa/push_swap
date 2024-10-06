@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:06:20 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/19 21:50:07 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/06 01:28:23 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void	ft_putstr(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		write(1, &str[i++], 1);
+	if (write(1, str, ft_strlen(str)) == -1)
+		return;
 }
 
 /*int main(void)

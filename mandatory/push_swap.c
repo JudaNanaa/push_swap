@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:51 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 22:42:33 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 03:11:01 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_all_push_in_b(t_stacks *stacks)
 	un_quart = ft_find_un_quart(stacks->stack_a, tmp);
 	while (stacks->len_stacka > (tmp / 2) && stacks->len_stacka > 3)
 	{
-		stacks = ft_presort_stack_a_part1(stacks, mediane);
+		while (stacks->stack_a->nb > mediane)
+			ft_rotate_a(stacks, 1);
 		ft_push_b(stacks);
 		if (stacks->stack_b->nb >= un_quart)
 			ft_rotate_b(stacks, 1);

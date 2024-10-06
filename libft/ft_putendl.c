@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
+/*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:06:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/23 15:07:29 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 01:25:39 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static int	ft_lenstr(char const *str)
 
 void	ft_putendl(char const *s)
 {
-	write(1, s, ft_lenstr(s));
-	write(1, "\n", 1);
+	if (write(1, s, ft_lenstr(s)) == -1)
+		return;
+	if (write(1, "\n", 1) == -1)
+		return;
 }
 
 /*int main(void)

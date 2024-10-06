@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/05 21:39:36 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/06 02:36:53 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_pa_ra_or_rra(t_stacks *stacks)
 		return;
 	nb = ft_less_movement(stacks->stack_a, stacks->stack_b, stacks->len_stackb, stacks->len_stacka);
 	stacks = ft_place_top_b(stacks, nb, stacks->len_stackb);
-	buff = ft_find_nb_stacka(stacks->stack_a, nb);
+	buff = ft_find_next(stacks->stack_a, nb);
 	nb = stacks->len_stacka - buff;
 	if (buff <= nb)
 	{
@@ -57,7 +57,7 @@ int	ft_less_movement(t_stack *stack_a, t_stack *stack_b, int len_stackb,
 	i = 0;
 	while (i < len_stackb)
 	{
-		next_in_a = ft_find_nb_stacka(stack_a, stack_b->nb);
+		next_in_a = ft_find_next(stack_a, stack_b->nb);
 		if ((next_in_a < len_stacka / 2 && i < len_stackb / 2)
 			|| (next_in_a >= len_stacka / 2 && i >= len_stackb / 2))
 			tab_cost[i] = ft_max(ft_min(next_in_a, len_stacka - next_in_a), ft_min(i, len_stackb - i));
