@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:39:41 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/06 20:58:09 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/07 13:46:16 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,20 @@ int	ft_find_next_fork(t_stack *first, t_stack *last, int nb, int len)
 	buff[1] = 0;
 	min[0] = first->nb;
 	min[1] = 0;
-	while (index < len)
+	while (index <= len / 2)
 	{
 		if (nb < first->nb && (buff[0] == nb || buff[0] > first->nb))
 		{
 			buff[0] = first->nb;
 			buff[1] = index;
-			if (buff[0] == nb + 1)
-				return (buff[1]);
 		}
 		if (nb < last->nb && (buff[0] == nb || buff[0] > last->nb))
 		{
 			buff[0] = last->nb;
 			buff[1] = len - 1 - index;
-			if (buff[0] == nb + 1)
-				return (buff[1]);
 		}
+		if (buff[0] == nb + 1)
+			return (buff[1]);
 		if (min[0] > ft_min(first->nb, last->nb))
 		{
 			min[0] = ft_min(first->nb, last->nb);

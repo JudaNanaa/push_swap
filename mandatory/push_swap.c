@@ -6,22 +6,20 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:51 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/07 00:25:40 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/07 13:35:52 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 #include <time.h>
 
-void	ft_all_push_in_b(t_stacks *stacks)
+void	ft_all_push_in_b(t_stacks *stacks, int *pivots)
 {
-	int pivots[2];
 	int	tmp;
 
 	if (stacks->len.a == 3)
 		return ;
 	tmp = stacks->len.a;
-	ft_find_pivot(stacks->stack_a, stacks->len.a, pivots);
 	while (stacks->len.a > (tmp / 2) && stacks->len.a > 3)
 	{
 		while (stacks->stack_a->nb > pivots[0])
@@ -30,7 +28,8 @@ void	ft_all_push_in_b(t_stacks *stacks)
 		if (stacks->stack_b->nb >= pivots[1])
 			ft_rotate_b(stacks, 1);
 	}
-	ft_all_push_in_b(stacks);
+	ft_find_pivot(stacks->stack_a, stacks->len.a, pivots);
+	ft_all_push_in_b(stacks, pivots);
 }
 
 void	ft_final_sort(t_stacks *stacks)
@@ -72,7 +71,7 @@ t_stack	*ft_push_swap(t_stack *stack_a)
 	if (stacks.len.a == 2)
 		return (ft_2_numbers(&stacks), stacks.stack_a);
 	if (stacks.len.a > 5)
-		ft_all_push_in_b(&stacks);
+		ft_all_push_in_b(&stacks, pivot);
 	else
 	{
 		while (stacks.len.a > 3)
