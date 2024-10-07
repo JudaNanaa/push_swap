@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 00:00:31 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/06 18:08:00 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/07 13:24:51 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	ft_swap_a(t_stacks *stacks)
 	first->next = third;
 	second->prev = NULL;
 	first->prev = second;
-	third->prev = first;
+	if (third)
+		third->prev = first;
 	stacks->stack_a = second;
 	stacks->first_a = second;
 	ft_write(1, "sa\n", 3);
@@ -49,7 +50,8 @@ void	ft_swap_b(t_stacks *stacks)
 	first->next = third;
 	second->prev = NULL;
 	first->prev = second;
-	third->prev = first;
+	if (third)
+		third->prev = first;
 	stacks->stack_b = second;
 	stacks->first_b = second;
 	ft_write(1, "sb\n", 3);
