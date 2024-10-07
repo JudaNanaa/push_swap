@@ -6,12 +6,17 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:51 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/07 13:35:52 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/08 01:10:16 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 #include <time.h>
+
+#define FISRT 0
+#define MEDIANE 1
+#define THIRD 2
+#define TEST 3
 
 void	ft_all_push_in_b(t_stacks *stacks, int *pivots)
 {
@@ -22,10 +27,10 @@ void	ft_all_push_in_b(t_stacks *stacks, int *pivots)
 	tmp = stacks->len.a;
 	while (stacks->len.a > (tmp / 2) && stacks->len.a > 3)
 	{
-		while (stacks->stack_a->nb > pivots[0])
+		while (stacks->stack_a->nb > pivots[FISRT] && stacks->stack_a->nb < pivots[THIRD])
 			ft_rotate_a(stacks, 1);
 		ft_push_b(stacks);
-		if (stacks->stack_b->nb >= pivots[1])
+		if (stacks->stack_b->nb < pivots[THIRD])
 			ft_rotate_b(stacks, 1);
 	}
 	ft_find_pivot(stacks->stack_a, stacks->len.a, pivots);
@@ -63,11 +68,11 @@ void set_stacks(t_stacks *stacks, t_stack *stack_a)
 t_stack	*ft_push_swap(t_stack *stack_a)
 {
 	t_stacks	stacks;
-	int	pivot[2];
+	int	pivot[4];
 
 	set_stacks(&stacks, stack_a);
 	ft_find_pivot(stacks.stack_a, stacks.len.a, pivot);
-	stacks.mediane = pivot[0];
+	stacks.mediane = pivot[MEDIANE];
 	if (stacks.len.a == 2)
 		return (ft_2_numbers(&stacks), stacks.stack_a);
 	if (stacks.len.a > 5)

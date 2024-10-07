@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/07 02:02:56 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/08 01:21:31 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,14 @@ int	ft_less_movement(t_stacks *stacks)
 	while (i < stacks->len.b)
 	{
 		next_in_a = ft_find_next_fork(a, stacks->last_a, b->nb, stacks->len.a);
+		// next_in_a = ft_find_next(a, b->nb);
 		if ((next_in_a < stacks->len.a / 2 && i < stacks->len.b / 2)
 			|| (next_in_a >= stacks->len.a / 2 && i >= stacks->len.b / 2))
 			current_cost = ft_max(ft_min(next_in_a, stacks->len.a - next_in_a), ft_min(i, stacks->len.b - i));
 		else
 		{
 		 	current_cost = ft_min(next_in_a, stacks->len.a - next_in_a) + ft_min(i, stacks->len.b - i);
+			if (ft_min(next_in_a, stacks->len.a - next_in_a) == next_in_a)
 		}
 		if (save_cost > current_cost || save_cost == -1
 			 || (save_cost == current_cost && save_nb < b->nb))

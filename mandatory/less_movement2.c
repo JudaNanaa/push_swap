@@ -6,87 +6,182 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:39:41 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/07 13:46:16 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/07 17:07:19 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 
 // Changer cette function pour avoir de meilleurs resultats
-int	ft_find_next(t_stack *stack, int nb)
+int	ft_find_next(t_stack *even, int nb)
 {
 	int	buff[2];
 	int	min[2];
 	int index;
+	t_stack *odd;
 
+	odd = even->next;
 	index = 0;
 	buff[0] = nb;
 	buff[1] = 0;
-	min[0] = stack->nb;
+	min[0] = even->nb;
 	min[1] = 0;
-	while (stack)
+	while (odd)
 	{
-		if (nb < stack->nb && (buff[0] == nb || buff[0] > stack->nb))
+		if (nb < even->nb && (buff[0] == nb || buff[0] > even->nb))
 		{
-			buff[0] = stack->nb;
+			buff[0] = even->nb;
+			buff[1] = index;
+		}
+		if (nb < odd->nb && (buff[0] == nb || buff[0] > odd->nb))
+		{
+			buff[0] = odd->nb;
+			buff[1] = index + 1;
+		}
+		if (buff[0] == nb + 1)
+			return (buff[1]);
+		if (min[0] > ft_min(even->nb, odd->nb))
+		{
+			min[0] = ft_min(even->nb, odd->nb);
+			if (min[0] == even->nb)
+				min[1] = index;
+			else
+				min[1] = index + 1;
+		}
+		index += 2;
+		even = odd->next;
+		if (even == NULL)
+			break;
+		odd = even->next;
+	}
+	if (even)
+	{
+		if (nb < even->nb && (buff[0] == nb || buff[0] > even->nb))
+		{
+			buff[0] = even->nb;
 			buff[1] = index;
 			if (buff[0] == nb + 1)
 				return (buff[1]);
-		}
-		if (min[0] > stack->nb)
+		}	
+		if (min[0] > even->nb)
 		{
-			min[0] = stack->nb;
+			min[0] = even->nb;
 			min[1] = index;
-		}
-		++index;
-		stack = stack->next;
+		}	
 	}
 	if (buff[0] == nb)
 		return (min[1]);
 	return (buff[1]);
 }
+
+// int	ft_find_next_fork(t_stack *first, t_stack *last, int nb, int len)
+// {
+// 	int	buff[2];
+// 	int	min[2];
+// 	int index;
+
+// 	index = 0;
+// 	buff[0] = nb;
+// 	buff[1] = 0;
+// 	min[0] = first->nb;
+// 	min[1] = 0;
+// 	while (index <= len / 2)
+// 	{
+// 		if (nb < first->nb && (buff[0] == nb || buff[0] > first->nb))
+// 		{
+// 			buff[0] = first->nb;
+// 			buff[1] = index;
+// 		}
+// 		if (nb < last->nb && (buff[0] == nb || buff[0] > last->nb))
+// 		{
+// 			buff[0] = last->nb;
+// 			buff[1] = len - 1 - index;
+// 		}
+// 		if (buff[0] == nb + 1)
+// 			return (buff[1]);
+// 		if (min[0] > ft_min(first->nb, last->nb))
+// 		{
+// 			min[0] = ft_min(first->nb, last->nb);
+// 			if (min[0] == first->nb)
+// 				min[1] = index;
+// 			else
+// 			 	min[1] = len - 1 - index;
+// 		}
+// 		++index;
+// 		first = first->next;
+// 		last = last->prev;
+// 	}
+// 	if (buff[0] == nb)
+// 		return (min[1]);
+// 	return (buff[1]);
+// }
 
 int	ft_find_next_fork(t_stack *first, t_stack *last, int nb, int len)
 {
 	int	buff[2];
 	int	min[2];
 	int index;
+	t_stack *even_first, *odd_first;
+	t_stack *even_last, *odd_last;
 
 	index = 0;
 	buff[0] = nb;
 	buff[1] = 0;
 	min[0] = first->nb;
 	min[1] = 0;
+	even_first = first;
+	odd_first = first->next;
+	even_last = last;
+	odd_last = last->prev;
 	while (index <= len / 2)
 	{
-		if (nb < first->nb && (buff[0] == nb || buff[0] > first->nb))
+		if (nb < even_first->nb && (buff[0] == nb || buff[0] > even_first->nb))
 		{
-			buff[0] = first->nb;
+			buff[0] = even_first->nb;
 			buff[1] = index;
 		}
-		if (nb < last->nb && (buff[0] == nb || buff[0] > last->nb))
+		if (nb < odd_first->nb && (buff[0] == nb || buff[0] > odd_first->nb))
 		{
-			buff[0] = last->nb;
+			buff[0] = odd_first->nb;
+			buff[1] = index + 1;
+		}
+		if (nb < even_last->nb && (buff[0] == nb || buff[0] > even_last->nb))
+		{
+			buff[0] = even_last->nb;
 			buff[1] = len - 1 - index;
+		}
+		if (nb < odd_last->nb && (buff[0] == nb || buff[0] > odd_last->nb))
+		{
+			buff[0] = odd_last->nb;
+			buff[1] = len - 1 - index - 1;
 		}
 		if (buff[0] == nb + 1)
 			return (buff[1]);
-		if (min[0] > ft_min(first->nb, last->nb))
+		if (min[0] > ft_min(ft_min(even_first->nb, odd_first->nb), ft_min(even_last->nb, odd_last->nb)))
 		{
-			min[0] = ft_min(first->nb, last->nb);
-			if (min[0] == first->nb)
+			min[0] = ft_min(ft_min(even_first->nb, odd_first->nb), ft_min(even_last->nb, odd_last->nb));
+			if (min[0] == even_first->nb)
 				min[1] = index;
+			else if (min[0] == odd_first->nb)
+				min[1] = index + 1;
+			else if (min[0] == even_last->nb)
+				min[1] = len - 1 - index;
 			else
-			 	min[1] = len -1 - index;
+				min[1] = len - 1 - index - 1;
 		}
-		++index;
-		first = first->next;
-		last = last->prev;
+		index += 2;
+		even_first = odd_first->next;
+		if (even_first)
+			odd_first = even_first->next;
+		even_last = odd_last->prev;
+		if (even_last)
+			odd_last = even_last->prev;
 	}
 	if (buff[0] == nb)
 		return (min[1]);
 	return (buff[1]);
 }
+
 
 void ft_less_movement_in_b(int *tab, int len_stackb)
 {

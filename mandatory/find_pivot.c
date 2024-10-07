@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:37:19 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/06 16:25:01 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/08 00:54:40 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	ft_find_pivot(t_stack *stack, int len_stack, int *pivot)
 	}
 	else
 	{
-		pivot[0] = tab[((len_stack - 1) / 2)];
-		pivot[1] = tab[((len_stack - 1) / 4)];
+		pivot[0] = tab[((len_stack - 1) / 4)];
+		pivot[3] = tab[((len_stack - 1) / 4) / 2];
+		pivot[1] = tab[((len_stack - 1) / 2)];
+		pivot[2] = tab[(((len_stack - 1) * 3) / 4)];
 	}
 }
 
