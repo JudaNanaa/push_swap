@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:12:28 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/06 20:22:21 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/07 00:21:49 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_stacks
 	struct s_stack	*first_b;
 	struct s_stack	*last_b;
 	t_int			index;
+	int				mediane;
 }					t_stacks;
 
 int					ft_check_if_int(char *str);

@@ -6,12 +6,13 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 22:38:52 by madamou           #+#    #+#             */
-/*   Updated: 2024/10/06 20:26:30 by madamou          ###   ########.fr       */
+/*   Updated: 2024/10/07 02:02:56 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_push_swap.h"
 #include <stdio.h>
+#include <math.h>
 
 int	ft_find_next_fork(t_stack *first, t_stack *last, int nb, int len);
 
@@ -76,6 +77,13 @@ int ft_max(int a, int b)
 	return (b);
 }
 
+int ft_abs(int a)
+{
+	if (a >= 0)
+		return (a);
+	return (-a);
+}
+
 int	ft_less_movement(t_stacks *stacks)
 {
 	int current_cost;
@@ -90,6 +98,7 @@ int	ft_less_movement(t_stacks *stacks)
 	a = stacks->stack_a;
 	b = stacks->stack_b;
 	save_cost = -1;
+	save_nb = 0;
 	while (i < stacks->len.b)
 	{
 		next_in_a = ft_find_next_fork(a, stacks->last_a, b->nb, stacks->len.a);
@@ -97,7 +106,9 @@ int	ft_less_movement(t_stacks *stacks)
 			|| (next_in_a >= stacks->len.a / 2 && i >= stacks->len.b / 2))
 			current_cost = ft_max(ft_min(next_in_a, stacks->len.a - next_in_a), ft_min(i, stacks->len.b - i));
 		else
+		{
 		 	current_cost = ft_min(next_in_a, stacks->len.a - next_in_a) + ft_min(i, stacks->len.b - i);
+		}
 		if (save_cost > current_cost || save_cost == -1
 			 || (save_cost == current_cost && save_nb < b->nb))
 		{
